@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calcola Sconto Online - Calcolatore Sconto Inverso e Percentuale</title>
+    <meta name="description" content="Il calcolatore di sconti più rapido online. Calcola il prezzo finale, lo sconto percentuale o il prezzo di listino originale in un click con formule spiegate.">
+    
+    <script>
+      function caricaAnalytics() {
+          var gtagScript = document.createElement('script');
+          gtagScript.async = true;
+          gtagScript.src = "https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"; // Sostituire con ID reale in seguito
+          document.head.appendChild(gtagScript);
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-XXXXXXXXXX');
+      }
+      if (localStorage.getItem('cookieAccettati') === 'true') {
+          caricaAnalytics();
+      }
+    </script>
+
+    <style>
+        :root { --main-purple: #b19cd9; --main-purple-sat: #9d81d1; --text-soft: #a499bc; --bg-light: #faf9ff; --gray-mute: #e0dbe6; }
+        body { background: var(--bg-light); margin: 0; font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; display: flex; flex-direction: column; min-height: 100vh; color: #444; line-height: 1.5; }
+        
+        header { background: white; padding: 30px 20px; text-align: center; border-bottom: 1px solid #f0edf5; }
+        header h1 { color: #8e7ca8; margin: 0; font-size: 28px; font-weight: 800; letter-spacing: -1px; }
+        .ux-desc { max-width: 500px; margin: 15px auto 0; font-size: 14px; color: var(--text-soft); font-style: italic; }
+
+        .instruction-tag { font-size: 11px; color: var(--main-purple); font-weight: 800; text-transform: uppercase; margin: 20px auto 10px; letter-spacing: 1px; display: block; text-align: center; }
+
+        .main-content { flex: 1; padding: 10px 20px 30px; display: flex; flex-direction: column; align-items: center; }
+        
+        #app-box { max-width: 480px; width: 100%; background: white; padding: 30px; border-radius: 35px; box-shadow: 0 15px 50px rgba(180, 160, 200, 0.12); border: 1px solid #f0edf5; box-sizing: border-box; text-align: center; }
+        
+        label { font-size: 9px; color: var(--text-soft); font-weight: 800; display: block; margin-bottom: 6px; text-transform: uppercase; text-align: left; }
+        .zen-input { width: 100%; padding: 14px; border: 2px solid #f6f3f9; border-radius: 14px; outline: none; font-size: 16px; box-sizing: border-box; transition: 0.3s; }
+        .zen-input:focus { border-color: var(--main-purple); background: white; }
+
+        .grid-inputs { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin-top: 18px; }
+        .highlight-field { background: #fffdf5; border-color: #fff9e6; color: #8e7ca8; font-weight: bold; }
+
+        .actions { display: flex; gap: 12px; margin: 25px 0; }
+        .btn-pri, .btn-sec { cursor: pointer; border-radius: 18px; font-weight: 800; display: flex; align-items: center; justify-content: center; height: 55px; border: none; flex: 1; transition: 0.2s; }
+        .btn-pri { background: var(--main-purple); color: white; flex: 2; font-size: 15px; }
+        .btn-pri:hover { background: var(--main-purple-sat); }
+        .btn-sec { background: white; border: 2px solid #f0edf5; color: var(--text-soft); }
+
+        #lista-corpo { max-height: 180px; overflow-y: auto; margin-bottom: 15px; border-top: 1px solid #f8f6fb; text-align: left; }
+        
+        .summary-box { background: #fdfcff; padding: 25px; border-radius: 25px; border: 1px solid #f0edf5; margin-top: 10px; }
+        .summary-line { display: flex; justify-content: space-between; margin-bottom: 10px; color: var(--text-soft); font-size: 14px; }
+        
+        .btn-clear-list { background: transparent; border: 1px solid #eee; color: #ccc; padding: 10px; border-radius: 12px; font-size: 11px; font-weight: bold; cursor: pointer; text-transform: uppercase; width: 100%; margin-top: 10px;}
+
+        .faq-section { max-width: 600px; width: 100%; margin-top: 40px; }
+        .faq-section h2 { color: #8e7ca8; font-size: 20px; text-align: center; margin-bottom: 25px; font-weight: 800; }
+        .faq-section details { background: white; padding: 18px; border-radius: 18px; border: 1px solid #f0edf5; margin-bottom: 12px; cursor: pointer; }
+        .faq-section summary { font-size: 15px; font-weight: 700; color: #8e7ca8; outline: none; }
+        
+        .formula-box { background: #f8f6fb; padding: 15px; border-radius: 12px; font-family: 'Courier New', monospace; display: block; margin: 12px 0; color: #7a6a94; border-left: 4px solid var(--main-purple); font-size: 13px; line-height: 1.6; }
+        .step-math { color: var(--main-purple-sat); font-weight: 800; margin-top: 10px; display: block; font-size: 12px; text-transform: uppercase; }
+
+        #cookie-banner { position: fixed; bottom: 25px; left: 25px; right: 25px; background: white; padding: 25px; border-radius: 25px; box-shadow: 0 15px 50px rgba(0,0,0,0.15); border: 2px solid var(--main-purple); z-index: 10000; display: none; flex-direction: column; gap: 15px; max-width: 500px; margin: 0 auto; }
+        
+        footer { background: #fff; padding: 50px 20px; text-align: center; border-top: 1px solid #f0edf5; font-size: 13px; color: var(--text-soft); }
+        a { color: #8e7ca8; text-decoration: none; font-weight: 600; cursor: pointer; }
+    </style>
+</head>
+<body>
+
+    <div id="cookie-banner">
+        <p><strong>🍪 La tua Privacy</strong><br>Usiamo cookie statistici per migliorare l'esperienza sul sito. Puoi accettare o rifiutare senza limitazioni.</p>
+        <div style="display:flex; gap:10px; justify-content: flex-end;">
+            <button onclick="gestioneCookie(false)" style="background:#f0edf5; border:none; padding:10px 20px; border-radius:14px; cursor:pointer">Rifiuta</button>
+            <button onclick="gestioneCookie(true)" style="background:var(--main-purple); color:white; border:none; padding:10px 20px; border-radius:14px; cursor:pointer; font-weight:bold">Accetta</button>
+        </div>
+    </div>
+
+    <header>
+        <h1>CalcolaSconto.it</h1>
+        <p class="ux-desc">Lo strumento veloce per sconti, scorpori e liste della spesa.</p>
+    </header>
+
+    <div class="main-content">
+        <span class="instruction-tag">Inserisci 2 valori per calcolare il 3°</span>
+        <div id="app-box">
+            <label>Cosa stai scontando?</label>
+            <input type="text" id="in-nome" placeholder="es. Scarpe, Maglione..." class="zen-input" style="margin-bottom:15px">
+
+            <div class="grid-inputs">
+                <div><label>Listino (€)</label><input type="text" id="in-pieno" placeholder="0.00" oninput="motoreUX('p')" class="zen-input"></div>
+                <div><label>Sconto (%)</label><input type="text" id="in-sconto" placeholder="0" oninput="motoreUX('s')" class="zen-input"></div>
+                <div><label>Pagato (€)</label><input type="text" id="in-finale" placeholder="0.00" oninput="motoreUX('f')" class="zen-input highlight-field"></div>
+            </div>
+
+            <div class="actions">
+                <button onclick="resetCampi()" class="btn-sec">↺ Pulisci</button>
+                <button onclick="aggiungi()" class="btn-pri">Aggiungi alla Lista</button>
+            </div>
+
+            <div id="lista-corpo"></div>
+
+            <div id="recap-ui" style="display: none;">
+                <div class="summary-box">
+                    <div class="summary-line"><span>Totale listino:</span><strong>€ <span id="out-p">0,00</span></strong></div>
+                    <div class="summary-line"><span>Totale pagato:</span><strong>€ <span id="out-f">0,00</span></strong></div>
+                    <div style="text-align: center; margin-top: 15px; padding-top:10px; border-top: 1px dashed #eee;">
+                        <p style="margin: 0; font-size: 11px; color: #a499bc; font-weight: 600;">RISPARMIO REALE</p>
+                        <div style="font-size: 34px; color: #9d81d1; font-weight: 800;">€ <span id="out-r">0,00</span></div>
+                    </div>
+                    <button class="btn-pri" style="height:45px; font-size:13px; width:100%; margin-top:15px" onclick="condividiTesto()">Condividi Risultati</button>
+                    <button class="btn-clear-list" onclick="svuota()">✕ Svuota Tutto</button>
+                </div>
+            </div>
+        </div>
+
+        <section class="faq-section">
+            <h2>Guida ai Calcoli Matematici</h2>
+            
+            <details open>
+                <summary>1. Calcolo del Prezzo Scontato</summary>
+                <p>Utile per sapere quanto pagherai alla cassa conoscendo il prezzo iniziale e la percentuale.</p>
+                <span class="step-math">Svolgimento Passo-Passo:</span>
+                <div class="formula-box">
+                    <strong>Formula:</strong> Prezzo Finale = Listino - (Listino * Sconto / 100)<br><br>
+                    <strong>Esempio Reale:</strong> Prodotto da 80€ scontato del 20%<br>
+                    1. Trova lo sconto: 80 * 20 = 1600<br>
+                    2. Dividi per 100: 1600 / 100 = 16€ (Sconto in Euro)<br>
+                    3. Sottrai dal totale: 80 - 16 = <strong>64€</strong>
+                </div>
+            </details>
+
+            <details>
+                <summary>2. Calcolo dello Sconto Inverso (Scorporo)</summary>
+                <p>Utile per scoprire il prezzo originale di un oggetto già scontato.</p>
+                <span class="step-math">Svolgimento Passo-Passo:</span>
+                <div class="formula-box">
+                    <strong>Formula:</strong> Prezzo Originale = (Pagato * 100) / (100 - Percentuale)<br><br>
+                    <strong>Esempio Reale:</strong> Hai pagato 45€ con uno sconto del 10%<br>
+                    1. Sottrai lo sconto da 100: 100 - 10 = 90<br>
+                    2. Moltiplica il pagato per 100: 45 * 100 = 4500<br>
+                    3. Dividi i due risultati: 4500 / 90 = <strong>50€</strong>
+                </div>
+            </details>
+
+            <details>
+                <summary>3. Calcolo della Percentuale applicata</summary>
+                <p>Scopri l'entità dello sconto ricevuto tra due prezzi noti.</p>
+                <span class="step-math">Svolgimento Passo-Passo:</span>
+                <div class="formula-box">
+                    <strong>Formula:</strong> % Sconto = [(Listino - Pagato) / Listino] * 100<br><br>
+                    <strong>Esempio Reale:</strong> Da 200€ a 150€<br>
+                    1. Trova la differenza: 200 - 150 = 50€ (Risparmio)<br>
+                    2. Dividi per il listino: 50 / 200 = 0,25<br>
+                    3. Trasforma in percentuale: 0,25 * 100 = <strong>25%</strong>
+                </div>
+            </details>
+
+            <details id="privacy-faq">
+                <summary>4. Privacy e Cookie Policy</summary>
+                <p><strong>Sicurezza:</strong> Questo sito non invia i tuoi dati a nessun server. I calcoli avvengono localmente sul tuo dispositivo.<br>
+                <strong>Cookie:</strong> Utilizziamo Google Analytics solo per fini statistici (numero di visite) se accetti il banner.</p>
+            </details>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 CalcolaSconto.it | <a onclick="document.getElementById('privacy-faq').open = true; document.getElementById('privacy-faq').scrollIntoView();">Privacy Policy</a> | <a onclick="resetCookie()">Resetta Scelte Cookie</a></p>
+    </footer>
+
+    <script>
+        let carrello = []; let buffer = [];
+
+        // Check iniziale per il Popup Cookie
+        window.onload = function() {
+            if (localStorage.getItem('cookieScelta') === null) {
+                document.getElementById('cookie-banner').style.display = 'flex';
+            }
+        };
+
+        function gestioneCookie(accetta) {
+            localStorage.setItem('cookieScelta', 'fatto');
+            localStorage.setItem('cookieAccettati', accetta);
+            document.getElementById('cookie-banner').style.display = 'none';
+            if(accetta) caricaAnalytics();
+        }
+
+        function resetCookie() {
+            localStorage.removeItem('cookieScelta');
+            localStorage.removeItem('cookieAccettati');
+            location.reload();
+        }
+
+        // Logica di Calcolo
+        function pulisci(val) { return parseFloat(val.toString().replace(',', '.')); }
+
+        function motoreUX(t) {
+            const p=document.getElementById('in-pieno'), s=document.getElementById('in-sconto'), fld=document.getElementById('in-finale');
+            if (buffer[buffer.length-1]!==t) { buffer.push(t); if(buffer.length>2) buffer.shift(); }
+            if (buffer.length===2) {
+                let vP=pulisci(p.value), vS=pulisci(s.value), vF=pulisci(fld.value);
+                const target = ['p','s','f'].find(x => !buffer.includes(x));
+                if (target==='f' && !isNaN(vP) && !isNaN(vS)) fld.value = (vP-(vP*vS/100)).toFixed(2);
+                else if (target==='s' && !isNaN(vP) && !isNaN(vF)) { if(vP!==0) s.value = (((vP-vF)/vP)*100).toFixed(1); }
+                else if (target==='p' && !isNaN(vF) && !isNaN(vS)) { if(vS<100) p.value = ((vF*100)/(100-vS)).toFixed(2); }
+            }
+        }
+
+        function aggiungi() {
+            const pI=document.getElementById('in-pieno'), fI=document.getElementById('in-finale'), nI=document.getElementById('in-nome');
+            let vP = pulisci(pI.value), vF = pulisci(fI.value);
+            if(isNaN(vP) || isNaN(vF)) return;
+            carrello.push({n: nI.value||"Articolo", p: vP, f: vF});
+            resetCampi(); aggiornaUI();
+        }
+
+        function aggiornaUI() {
+            const lista=document.getElementById('lista-corpo'), recap=document.getElementById('recap-ui');
+            recap.style.display = carrello.length > 0 ? 'block' : 'none';
+            lista.innerHTML=''; let tP=0, tF=0;
+            carrello.forEach((item, i) => {
+                tP+=item.p; tF+=item.f;
+                lista.innerHTML += `<div style="display:flex; justify-content:space-between; padding:12px; border-bottom:1px solid #faf9ff; font-size:13px; color:#8e7ca8;">
+                    <span>${item.n}: <strong>€${item.f.toFixed(2)}</strong></span>
+                    <span onclick="elimina(${i})" style="cursor:pointer; color:#ccc;">✕</span>
+                </div>`;
+            });
+            document.getElementById('out-p').innerText = tP.toFixed(2).replace('.', ',');
+            document.getElementById('out-f').innerText = tF.toFixed(2).replace('.', ',');
+            document.getElementById('out-r').innerText = (tP - tF).toFixed(2).replace('.', ',');
+        }
+
+        function condividiTesto() {
+            let tF=0; let elenco = "";
+            carrello.forEach(item => { tF+=item.f; elenco += `• ${item.n}: €${item.f.toFixed(2)}\n`; });
+            const msg = `🛍️ LISTA SHOPPING\n${elenco}\n💰 Totale: €${tF.toFixed(2)}\nFatto su CalcolaSconto.it`;
+            if (navigator.share) navigator.share({ title: 'La mia spesa', text: msg });
+            else { navigator.clipboard.writeText(msg); alert("Lista copiata!"); }
+        }
+
+        function resetCampi() { 
+            document.getElementById('in-pieno').value=''; 
+            document.getElementById('in-sconto').value=''; 
+            document.getElementById('in-finale').value=''; 
+            document.getElementById('in-nome').value=''; 
+            buffer=[]; 
+        }
+        function elimina(i) { carrello.splice(i,1); aggiornaUI(); }
+        function svuota() { if(confirm("Svuotare tutta la lista?")) { carrello=[]; aggiornaUI(); } }
+    </script>
+</body>
+</html>
