@@ -6,19 +6,18 @@
     <title>Calcola Sconto Online - Calcolatore Sconto Inverso e Percentuale</title>
     <meta name="description" content="Il calcolatore di sconti più rapido online. Calcola il prezzo finale, lo sconto percentuale o il prezzo di listino originale in un click con formule spiegate.">
     
+    <meta name="google-site-verification" content="INSERISCI_QUI_IL_TUO_CODICE_SEARCH_CONSOLE">
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-170NYKZPW2"></script>
     <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-170NYKZPW2');
+
       function caricaAnalytics() {
-          var gtagScript = document.createElement('script');
-          gtagScript.async = true;
-          gtagScript.src = "https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"; 
-          document.head.appendChild(gtagScript);
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-          gtag('config', 'G-XXXXXXXXXX');
-      }
-      if (localStorage.getItem('cookieAccettati') === 'true') {
-          caricaAnalytics();
+          // Analytics è già caricato sopra, qui gestiamo il consenso
+          console.log("Analytics Attivo");
       }
     </script>
 
@@ -50,7 +49,6 @@
         .faq-section details { background: white; padding: 18px; border-radius: 18px; border: 1px solid #f0edf5; margin-bottom: 12px; cursor: pointer; text-align: left; }
         .faq-section summary { font-size: 15px; font-weight: 700; color: #8e7ca8; outline: none; }
         .formula-box { background: #f8f6fb; padding: 15px; border-radius: 12px; font-family: 'Courier New', monospace; display: block; margin: 12px 0; color: #7a6a94; border-left: 4px solid var(--main-purple); font-size: 13px; line-height: 1.6; }
-        .step-math { color: var(--main-purple-sat); font-weight: 800; margin-top: 10px; display: block; font-size: 12px; text-transform: uppercase; }
         #cookie-banner { position: fixed; bottom: 25px; left: 25px; right: 25px; background: white; padding: 25px; border-radius: 25px; box-shadow: 0 15px 50px rgba(0,0,0,0.15); border: 2px solid var(--main-purple); z-index: 10000; display: none; flex-direction: column; gap: 15px; max-width: 500px; margin: 0 auto; }
         footer { background: #fff; padding: 50px 20px; text-align: center; border-top: 1px solid #f0edf5; font-size: 13px; color: var(--text-soft); }
         a { color: #8e7ca8; text-decoration: none; font-weight: 600; cursor: pointer; }
@@ -107,82 +105,24 @@
 
         <section class="faq-section">
             <h2>Guida ai Calcoli Matematici</h2>
-            <details open>
-                <summary>1. Calcolo del Prezzo Scontato</summary>
-                <div class="formula-box">
-                    <strong>Formula:</strong> Prezzo Finale = Listino - (Listino * Sconto / 100)<br><br>
-                    <strong>Esempio:</strong> Scarpe da 120€ scontate del 30%<br>
-                    1. (120 * 30) / 100 = 36€ (Sconto)<br>
-                    2. 120 - 36 = <strong>84€</strong>
-                </div>
-            </details>
-            <details>
-                <summary>2. Calcolo dello Sconto Inverso (Scorporo)</summary>
-                <div class="formula-box">
-                    <strong>Formula:</strong> Prezzo Originale = (Pagato * 100) / (100 - % Sconto)<br><br>
-                    <strong>Esempio:</strong> Pagato 60€ con sconto 25%<br>
-                    1. 100 - 25 = 75<br>
-                    2. (60 * 100) / 75 = <strong>80€</strong>
-                </div>
-            </details>
-            <details>
-                <summary>3. Calcolo della Percentuale di Sconto</summary>
-                <div class="formula-box">
-                    <strong>Formula:</strong> % Sconto = [(Listino - Pagato) / Listino] * 100<br><br>
-                    <strong>Esempio:</strong> Da 50€ a 35€<br>
-                    1. 50 - 35 = 15€ (Risparmio)<br>
-                    2. (15 / 50) * 100 = <strong>30%</strong>
-                </div>
-            </details>
-            <details>
-                <summary>4. Calcolo dello Sconto Medio</summary>
-                <div class="formula-box">
-                    <strong>Formula:</strong> % Media = (Risparmio Totale / Listino Totale) * 100<br><br>
-                    <strong>Esempio:</strong> <br>
-                    - Articolo A: 100€ (sconto 50€)<br>
-                    - Articolo B: 20€ (sconto 2€)<br>
-                    1. Risparmio totale: 52€ | Listino totale: 120€<br>
-                    2. (52 / 120) * 100 = <strong>43,3%</strong>
-                </div>
-            </details>
-            <details id="privacy-faq">
-                <summary>5. Privacy e Cookie</summary>
-                <p>I calcoli avvengono nel tuo browser. Usiamo Google Analytics solo per statistiche anonime se accetti il banner.</p>
-            </details>
+            <details open><summary>1. Calcolo del Prezzo Scontato</summary><div class="formula-box"><strong>Formula:</strong> Prezzo Finale = Listino - (Listino * Sconto / 100)<br><strong>Esempio:</strong> 100€ - 20% = 80€</div></details>
+            <details><summary>2. Calcolo dello Sconto Inverso</summary><div class="formula-box"><strong>Formula:</strong> Prezzo Originale = (Pagato * 100) / (100 - % Sconto)<br><strong>Esempio:</strong> Pagato 75€ con sconto 25% -> Costava 100€</div></details>
+            <details><summary>3. Calcolo della Percentuale di Sconto</summary><div class="formula-box"><strong>Formula:</strong> % Sconto = [(Listino - Pagato) / Listino] * 100</div></details>
+            <details><summary>4. Calcolo dello Sconto Medio</summary><div class="formula-box"><strong>Formula:</strong> % Media = (Risparmio Totale / Listino Totale) * 100</div></details>
         </section>
     </div>
 
     <footer>
-        <p>&copy; 2026 CalcolaSconto.it | <a onclick="document.getElementById('privacy-faq').open = true;">Privacy Policy</a> | <a onclick="resetCookie()">Resetta Cookie</a></p>
+        <p>&copy; 2026 CalcolaSconto.it | <a href="mailto:info@calcolasconto.it">info@calcolasconto.it</a></p>
+        <p><a onclick="resetCookie()">Gestione Cookie</a></p>
     </footer>
 
     <script>
         let carrello = []; let buffer = [];
-
-        window.onload = function() {
-            if (localStorage.getItem('cookieScelta') === null) {
-                document.getElementById('cookie-banner').style.display = 'flex';
-            }
-        };
-
-        function gestioneCookie(accetta) {
-            localStorage.setItem('cookieScelta', 'fatto');
-            localStorage.setItem('cookieAccettati', accetta);
-            document.getElementById('cookie-banner').style.display = 'none';
-            if(accetta) caricaAnalytics();
-        }
-
-        function resetCookie() {
-            localStorage.removeItem('cookieScelta');
-            localStorage.removeItem('cookieAccettati');
-            location.reload();
-        }
-
-        function pulisci(val) { 
-            if (!val) return NaN;
-            return parseFloat(val.toString().replace(',', '.')); 
-        }
-
+        window.onload = function() { if (localStorage.getItem('cookieScelta') === null) { document.getElementById('cookie-banner').style.display = 'flex'; } };
+        function gestioneCookie(accetta) { localStorage.setItem('cookieScelta', 'fatto'); localStorage.setItem('cookieAccettati', accetta); document.getElementById('cookie-banner').style.display = 'none'; if(accetta) caricaAnalytics(); }
+        function resetCookie() { localStorage.removeItem('cookieScelta'); location.reload(); }
+        function pulisci(val) { return parseFloat(val.toString().replace(',', '.')); }
         function motoreUX(t) {
             const p=document.getElementById('in-pieno'), s=document.getElementById('in-sconto'), f=document.getElementById('in-finale');
             if (buffer[buffer.length-1]!==t) { buffer.push(t); if(buffer.length>2) buffer.shift(); }
@@ -193,24 +133,22 @@
                 else if (!buffer.includes('p') && !isNaN(vF) && !isNaN(vS)) { if(vS<100) p.value = ((vF*100)/(100-vS)).toFixed(2); }
             }
         }
-
         function aggiungi() {
             const pI=document.getElementById('in-pieno'), fI=document.getElementById('in-finale'), nI=document.getElementById('in-nome');
             let vP = pulisci(pI.value), vF = pulisci(fI.value);
-            if(isNaN(vP) || vP <= 0) { alert("Inserisci i valori per calcolare lo sconto prima di aggiungere."); return; }
+            if(isNaN(vP) || vP <= 0) return;
             carrello.push({n: nI.value||"Articolo", p: vP, f: vF});
             resetCampi(); aggiornaUI();
         }
-
         function aggiornaUI() {
             const lista=document.getElementById('lista-corpo'), recap=document.getElementById('recap-ui');
             recap.style.display = carrello.length > 0 ? 'block' : 'none';
             lista.innerHTML=''; let tP=0, tF=0;
             carrello.forEach((item, i) => {
                 tP+=item.p; tF+=item.f;
-                lista.innerHTML += `<div style="display:flex; justify-content:space-between; padding:12px; border-bottom:1px solid #faf9ff; font-size:13px; color:#8e7ca8;">
-                    <span>${item.n}: <strong>€${item.f.toFixed(2)}</strong></span>
-                    <span onclick="elimina(${i})" style="cursor:pointer; color:#ccc; font-weight:bold; padding:0 5px;">✕</span>
+                lista.innerHTML += `<div style="display:flex; justify-content:space-between; padding:10px; border-bottom:1px solid #f0edf5; font-size:13px;">
+                    <span>${item.n}: €${item.f.toFixed(2)}</span>
+                    <span onclick="elimina(${i})" style="cursor:pointer; color:#ccc">✕</span>
                 </div>`;
             });
             let risp = tP - tF;
@@ -220,22 +158,9 @@
             document.getElementById('out-r').innerText = risp.toFixed(2).replace('.', ',');
             document.getElementById('out-sm').innerText = sMedio.toFixed(1);
         }
-
-        function condividiTesto() {
-            let tF=0; let elenco = "";
-            carrello.forEach(item => { tF+=item.f; elenco += `• ${item.n}: €${item.f.toFixed(2)}\n`; });
-            const msg = `🛍️ LISTA SHOPPING\n${elenco}\n💰 Totale: €${tF.toFixed(2)}\nFatto su CalcolaSconto.it`;
-            if (navigator.share) navigator.share({ title: 'La mia spesa', text: msg });
-            else { navigator.clipboard.writeText(msg); alert("Lista copiata negli appunti!"); }
-        }
-
-        function resetCampi() { 
-            document.getElementById('in-pieno').value=''; document.getElementById('in-sconto').value=''; 
-            document.getElementById('in-finale').value=''; document.getElementById('in-nome').value=''; 
-            buffer=[]; 
-        }
+        function resetCampi() { document.getElementById('in-pieno').value=''; document.getElementById('in-sconto').value=''; document.getElementById('in-finale').value=''; document.getElementById('in-nome').value=''; buffer=[]; }
         function elimina(i) { carrello.splice(i,1); aggiornaUI(); }
-        function svuota() { if(confirm("Svuotare tutta la lista?")) { carrello=[]; aggiornaUI(); } }
+        function svuota() { if(confirm("Svuotare tutto?")) { carrello=[]; aggiornaUI(); } }
     </script>
 </body>
 </html>
