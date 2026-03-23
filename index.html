@@ -10,7 +10,7 @@
       function caricaAnalytics() {
           var gtagScript = document.createElement('script');
           gtagScript.async = true;
-          gtagScript.src = "https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"; // Sostituire con ID reale in seguito
+          gtagScript.src = "https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"; 
           document.head.appendChild(gtagScript);
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
@@ -108,6 +108,7 @@
                 <div class="summary-box">
                     <div class="summary-line"><span>Totale listino:</span><strong>€ <span id="out-p">0,00</span></strong></div>
                     <div class="summary-line"><span>Totale pagato:</span><strong>€ <span id="out-f">0,00</span></strong></div>
+                    <div class="summary-line"><span>Sconto medio:</span><strong><span id="out-sm">0</span>%</strong></div>
                     <div style="text-align: center; margin-top: 15px; padding-top:10px; border-top: 1px dashed #eee;">
                         <p style="margin: 0; font-size: 11px; color: #a499bc; font-weight: 600;">RISPARMIO REALE</p>
                         <div style="font-size: 34px; color: #9d81d1; font-weight: 800;">€ <span id="out-r">0,00</span></div>
@@ -169,88 +170,4 @@
     </div>
 
     <footer>
-        <p>&copy; 2026 CalcolaSconto.it | <a onclick="document.getElementById('privacy-faq').open = true; document.getElementById('privacy-faq').scrollIntoView();">Privacy Policy</a> | <a onclick="resetCookie()">Resetta Scelte Cookie</a></p>
-    </footer>
-
-    <script>
-        let carrello = []; let buffer = [];
-
-        // Check iniziale per il Popup Cookie
-        window.onload = function() {
-            if (localStorage.getItem('cookieScelta') === null) {
-                document.getElementById('cookie-banner').style.display = 'flex';
-            }
-        };
-
-        function gestioneCookie(accetta) {
-            localStorage.setItem('cookieScelta', 'fatto');
-            localStorage.setItem('cookieAccettati', accetta);
-            document.getElementById('cookie-banner').style.display = 'none';
-            if(accetta) caricaAnalytics();
-        }
-
-        function resetCookie() {
-            localStorage.removeItem('cookieScelta');
-            localStorage.removeItem('cookieAccettati');
-            location.reload();
-        }
-
-        // Logica di Calcolo
-        function pulisci(val) { return parseFloat(val.toString().replace(',', '.')); }
-
-        function motoreUX(t) {
-            const p=document.getElementById('in-pieno'), s=document.getElementById('in-sconto'), fld=document.getElementById('in-finale');
-            if (buffer[buffer.length-1]!==t) { buffer.push(t); if(buffer.length>2) buffer.shift(); }
-            if (buffer.length===2) {
-                let vP=pulisci(p.value), vS=pulisci(s.value), vF=pulisci(fld.value);
-                const target = ['p','s','f'].find(x => !buffer.includes(x));
-                if (target==='f' && !isNaN(vP) && !isNaN(vS)) fld.value = (vP-(vP*vS/100)).toFixed(2);
-                else if (target==='s' && !isNaN(vP) && !isNaN(vF)) { if(vP!==0) s.value = (((vP-vF)/vP)*100).toFixed(1); }
-                else if (target==='p' && !isNaN(vF) && !isNaN(vS)) { if(vS<100) p.value = ((vF*100)/(100-vS)).toFixed(2); }
-            }
-        }
-
-        function aggiungi() {
-            const pI=document.getElementById('in-pieno'), fI=document.getElementById('in-finale'), nI=document.getElementById('in-nome');
-            let vP = pulisci(pI.value), vF = pulisci(fI.value);
-            if(isNaN(vP) || isNaN(vF)) return;
-            carrello.push({n: nI.value||"Articolo", p: vP, f: vF});
-            resetCampi(); aggiornaUI();
-        }
-
-        function aggiornaUI() {
-            const lista=document.getElementById('lista-corpo'), recap=document.getElementById('recap-ui');
-            recap.style.display = carrello.length > 0 ? 'block' : 'none';
-            lista.innerHTML=''; let tP=0, tF=0;
-            carrello.forEach((item, i) => {
-                tP+=item.p; tF+=item.f;
-                lista.innerHTML += `<div style="display:flex; justify-content:space-between; padding:12px; border-bottom:1px solid #faf9ff; font-size:13px; color:#8e7ca8;">
-                    <span>${item.n}: <strong>€${item.f.toFixed(2)}</strong></span>
-                    <span onclick="elimina(${i})" style="cursor:pointer; color:#ccc;">✕</span>
-                </div>`;
-            });
-            document.getElementById('out-p').innerText = tP.toFixed(2).replace('.', ',');
-            document.getElementById('out-f').innerText = tF.toFixed(2).replace('.', ',');
-            document.getElementById('out-r').innerText = (tP - tF).toFixed(2).replace('.', ',');
-        }
-
-        function condividiTesto() {
-            let tF=0; let elenco = "";
-            carrello.forEach(item => { tF+=item.f; elenco += `• ${item.n}: €${item.f.toFixed(2)}\n`; });
-            const msg = `🛍️ LISTA SHOPPING\n${elenco}\n💰 Totale: €${tF.toFixed(2)}\nFatto su CalcolaSconto.it`;
-            if (navigator.share) navigator.share({ title: 'La mia spesa', text: msg });
-            else { navigator.clipboard.writeText(msg); alert("Lista copiata!"); }
-        }
-
-        function resetCampi() { 
-            document.getElementById('in-pieno').value=''; 
-            document.getElementById('in-sconto').value=''; 
-            document.getElementById('in-finale').value=''; 
-            document.getElementById('in-nome').value=''; 
-            buffer=[]; 
-        }
-        function elimina(i) { carrello.splice(i,1); aggiornaUI(); }
-        function svuota() { if(confirm("Svuotare tutta la lista?")) { carrello=[]; aggiornaUI(); } }
-    </script>
-</body>
-</html>
+        <p>&copy; 2026 CalcolaSconto.it | <a onclick="document.getElementById('privacy-faq').open
