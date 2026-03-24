@@ -5,10 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calcola Sconto Online - Calcolatore Sconto Inverso e Percentuale</title>
     <meta name="description" content="Il calcolatore di sconti più rapido online. Calcola il prezzo finale, lo sconto percentuale o il prezzo di listino originale in un click con formule spiegate.">
-    <button onclick="addFavorite()" class="btn-secondary" style="margin-top: 10px;">
-  ⭐ Aggiungi ai Preferiti
-</button>
-    
+        
     <meta name="google-site-verification" content="INSERISCI_QUI_IL_TUO_CODICE_SEARCH_CONSOLE">
 
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-170NYKZPW2"></script>
@@ -17,7 +14,17 @@
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
       gtag('config', 'G-170NYKZPW2');
-
+        function addFavorite() {
+    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+    
+    if (isMobile) {
+        // Messaggio specifico per smartphone
+        alert("📱 PORTAMI SEMPRE CON TE:\n\n1. Tocca l'icona 'Condividi' (freccia in alto su iPhone) o i 3 puntini (su Android).\n2. Seleziona 'Aggiungi alla schermata Home'.\n\nDiventerò un'icona sul tuo telefono come una vera App!");
+    } else {
+        // Messaggio per computer
+        alert("⭐ AGGIUNGI AI PREFERITI:\n\nPremi CTRL + D (Windows) o CMD + D (Mac) sulla tastiera per salvarmi nel tuo browser!");
+    }
+}
       function caricaAnalytics() {
           // Analytics è già caricato sopra, qui gestiamo il consenso
           console.log("Analytics Attivo");
