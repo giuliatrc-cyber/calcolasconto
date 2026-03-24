@@ -16,7 +16,6 @@
       gtag('config', 'G-170NYKZPW2');
         
       function caricaAnalytics() {
-          // Analytics è già caricato sopra, qui gestiamo il consenso
           console.log("Analytics Attivo");
       }
     </script>
@@ -27,6 +26,27 @@
         header { background: white; padding: 30px 20px; text-align: center; border-bottom: 1px solid #f0edf5; }
         header h1 { color: #8e7ca8; margin: 0; font-size: 28px; font-weight: 800; letter-spacing: -1px; }
         .ux-desc { max-width: 500px; margin: 15px auto 0; font-size: 14px; color: var(--text-soft); font-style: italic; }
+        
+        /* Stile Bottone Preferiti Lilla */
+        .btn-fav { 
+            background: #f3effa; 
+            border: 1px solid var(--main-purple); 
+            color: #8e7ca8; 
+            padding: 8px 16px; 
+            border-radius: 20px; 
+            font-size: 12px; 
+            font-weight: 700; 
+            cursor: pointer; 
+            display: inline-flex; 
+            align-items: center; 
+            gap: 6px; 
+            margin-top: 15px;
+            transition: 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .btn-fav:hover { background: var(--main-purple); color: white; }
+
         .instruction-tag { font-size: 11px; color: var(--main-purple); font-weight: 800; text-transform: uppercase; margin: 20px auto 10px; letter-spacing: 1px; display: block; text-align: center; }
         .main-content { flex: 1; padding: 10px 20px 30px; display: flex; flex-direction: column; align-items: center; }
         #app-box { max-width: 480px; width: 100%; background: white; padding: 30px; border-radius: 35px; box-shadow: 0 15px 50px rgba(180, 160, 200, 0.12); border: 1px solid #f0edf5; box-sizing: border-box; text-align: center; }
@@ -67,6 +87,9 @@
     <header>
         <h1>CalcolaSconto.it</h1>
         <p class="ux-desc">Lo strumento veloce per sconti, scorpori e liste della spesa.</p>
+        <button onclick="addFavorite()" class="btn-fav">
+            ⭐ Salva tra i preferiti
+        </button>
     </header>
 
     <div class="main-content">
@@ -97,7 +120,7 @@
                         <p style="margin: 0; font-size: 11px; color: #a499bc; font-weight: 600;">RISPARMIO REALE</p>
                         <div style="font-size: 34px; color: #9d81d1; font-weight: 800;">€ <span id="out-r">0,00</span></div>
                     </div>
-                    <button class="btn-pri" style="height:45px; font-size:13px; width:100%; margin-top:15px" onclick="condividiTesto()">Condividi Risultati</button>
+                    <button class="btn-pri" style="height:45px; font-size:13px; width:100%; margin-top:15px" onclick="alert('Funzione in arrivo!')">Condividi Risultati</button>
                     <button class="btn-clear-list" onclick="svuota()">✕ Svuota Tutto</button>
                 </div>
             </div>
@@ -120,9 +143,20 @@
     <script>
         let carrello = []; let buffer = [];
         window.onload = function() { if (localStorage.getItem('cookieScelta') === null) { document.getElementById('cookie-banner').style.display = 'flex'; } };
+        
+        function addFavorite() {
+            const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+            if (isMobile) {
+                alert("📱 PER AGGIUNGERE ALLA HOME:\n\n1. Tocca l'icona 'Condividi' (il quadrato con la freccia su iPhone) o i 3 puntini (Android).\n2. Clicca su 'Aggiungi alla schermata Home'.");
+            } else {
+                alert("⭐ AGGIUNGI AI PREFERITI:\n\nPremi CTRL + D (Windows) o CMD + D (Mac) sulla tua tastiera.");
+            }
+        }
+
         function gestioneCookie(accetta) { localStorage.setItem('cookieScelta', 'fatto'); localStorage.setItem('cookieAccettati', accetta); document.getElementById('cookie-banner').style.display = 'none'; if(accetta) caricaAnalytics(); }
         function resetCookie() { localStorage.removeItem('cookieScelta'); location.reload(); }
         function pulisci(val) { return parseFloat(val.toString().replace(',', '.')); }
+        
         function motoreUX(t) {
             const p=document.getElementById('in-pieno'), s=document.getElementById('in-sconto'), f=document.getElementById('in-finale');
             if (buffer[buffer.length-1]!==t) { buffer.push(t); if(buffer.length>2) buffer.shift(); }
@@ -133,6 +167,7 @@
                 else if (!buffer.includes('p') && !isNaN(vF) && !isNaN(vS)) { if(vS<100) p.value = ((vF*100)/(100-vS)).toFixed(2); }
             }
         }
+
         function aggiungi() {
             const pI=document.getElementById('in-pieno'), fI=document.getElementById('in-finale'), nI=document.getElementById('in-nome');
             let vP = pulisci(pI.value), vF = pulisci(fI.value);
@@ -140,6 +175,7 @@
             carrello.push({n: nI.value||"Articolo", p: vP, f: vF});
             resetCampi(); aggiornaUI();
         }
+
         function aggiornaUI() {
             const lista=document.getElementById('lista-corpo'), recap=document.getElementById('recap-ui');
             recap.style.display = carrello.length > 0 ? 'block' : 'none';
@@ -158,6 +194,7 @@
             document.getElementById('out-r').innerText = risp.toFixed(2).replace('.', ',');
             document.getElementById('out-sm').innerText = sMedio.toFixed(1);
         }
+
         function resetCampi() { document.getElementById('in-pieno').value=''; document.getElementById('in-sconto').value=''; document.getElementById('in-finale').value=''; document.getElementById('in-nome').value=''; buffer=[]; }
         function elimina(i) { carrello.splice(i,1); aggiornaUI(); }
         function svuota() { if(confirm("Svuotare tutto?")) { carrello=[]; aggiornaUI(); } }
