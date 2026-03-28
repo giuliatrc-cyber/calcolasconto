@@ -46,6 +46,7 @@
         header h1 { color: #8e7ca8; margin: 0; font-size: 28px; font-weight: 800; letter-spacing: -1px; }
         .ux-desc { max-width: 500px; margin: 15px auto 0; font-size: 14px; color: var(--text-soft); font-style: italic; }
         
+        /* Bottone con Stellina Professionale */
         .btn-fav { 
             background: #f3effa; border: 1px solid var(--main-purple); color: #8e7ca8; padding: 8px 18px; border-radius: 25px; 
             font-size: 12px; font-weight: 700; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; 
@@ -58,30 +59,38 @@
         .instruction-tag { font-size: 11px; color: var(--main-purple); font-weight: 800; text-transform: uppercase; margin: 20px auto 10px; letter-spacing: 1px; display: block; text-align: center; }
         .main-content { flex: 1; padding: 10px 20px 30px; display: flex; flex-direction: column; align-items: center; }
         #app-box { max-width: 480px; width: 100%; background: white; padding: 30px; border-radius: 35px; box-shadow: 0 15px 50px rgba(180, 160, 200, 0.12); border: 1px solid #f0edf5; box-sizing: border-box; text-align: center; }
+        
         label { font-size: 9px; color: var(--text-soft); font-weight: 800; display: block; margin-bottom: 6px; text-transform: uppercase; text-align: left; }
         .zen-input { width: 100%; padding: 14px; border: 2px solid #f6f3f9; border-radius: 14px; outline: none; font-size: 16px; box-sizing: border-box; transition: 0.3s; margin-bottom: 5px; }
         .zen-input:focus { border-color: var(--main-purple); background: white; }
+        
         .grid-inputs { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin-top: 18px; }
         .highlight-field { background: #fffdf5; border-color: #fff9e6; color: #8e7ca8; font-weight: bold; }
+        
         .actions { display: flex; gap: 12px; margin: 25px 0; }
         .btn-pri, .btn-sec { cursor: pointer; border-radius: 18px; font-weight: 800; display: flex; align-items: center; justify-content: center; height: 55px; border: none; flex: 1; transition: 0.2s; }
         .btn-pri { background: var(--main-purple); color: white; flex: 2; font-size: 15px; }
         .btn-pri:hover { background: var(--main-purple-sat); }
         .btn-sec { background: white; border: 2px solid #f0edf5; color: var(--text-soft); }
+        
         #lista-corpo { max-height: 180px; overflow-y: auto; margin-bottom: 15px; border-top: 1px solid #f8f6fb; text-align: left; }
         .summary-box { background: #fdfcff; padding: 25px; border-radius: 25px; border: 1px solid #f0edf5; margin-top: 10px; }
         .summary-line { display: flex; justify-content: space-between; margin-bottom: 10px; color: var(--text-soft); font-size: 14px; }
         .btn-clear-list { background: transparent; border: 1px solid #eee; color: #ccc; padding: 10px; border-radius: 12px; font-size: 11px; font-weight: bold; cursor: pointer; text-transform: uppercase; width: 100%; margin-top: 10px;}
+        
         .faq-section { max-width: 600px; width: 100%; margin-top: 40px; }
         .faq-section h2 { color: #8e7ca8; font-size: 20px; text-align: center; margin-bottom: 25px; font-weight: 800; }
         .faq-section details { background: white; padding: 18px; border-radius: 18px; border: 1px solid #f0edf5; margin-bottom: 12px; cursor: pointer; text-align: left; }
         .faq-section summary { font-size: 15px; font-weight: 700; color: #8e7ca8; outline: none; }
         .formula-box { background: #f8f6fb; padding: 15px; border-radius: 12px; font-family: 'Segoe UI', sans-serif; display: block; margin: 12px 0; color: #7a6a94; border-left: 4px solid var(--main-purple); font-size: 13px; line-height: 1.6; }
+        
         #cookie-banner { position: fixed; bottom: 25px; left: 25px; right: 25px; background: white; padding: 25px; border-radius: 25px; box-shadow: 0 15px 50px rgba(0,0,0,0.15); border: 2px solid var(--main-purple); z-index: 10000; display: none; flex-direction: column; gap: 15px; max-width: 500px; margin: 0 auto; }
         footer { background: #fff; padding: 50px 20px; text-align: center; border-top: 1px solid #f0edf5; font-size: 13px; color: var(--text-soft); }
         a { color: #8e7ca8; text-decoration: none; font-weight: 600; cursor: pointer; }
         
+        /* Contenitore Widget */
         .reviews-pure-widget { margin: 40px 0; width: 100%; max-width: 650px; }
+        .collector-wrapper { width: 100%; max-height: 500px; overflow-y: auto; border-radius: 25px; box-shadow: 0 10px 30px rgba(180, 160, 200, 0.1); border: 1px solid #f0edf5; background: white; }
     </style>
 </head>
 <body>
@@ -141,9 +150,11 @@
             
             <div style="margin-bottom: 40px; text-align: center;">
                 <h3 style="color: #8e7ca8; font-size: 18px; font-weight: 800; margin-bottom: 15px;">Ti piace CalcolaSconto.it? Lascia un voto! ✨</h3>
-                <script type="text/javascript" src="https://widget.senja.io/js/iframeResizer.min.js"></script>
-                <iframe id="senja-collector-iframe" src="https://senja.io/p/calcola-sconto/r/P5EDI4?mode=embed" allow="camera;microphone" title="Senja form" frameborder="0" scrolling="no" width="100%" height="700"></iframe>
-                <script type="text/javascript">iFrameResize({log: false, checkOrigin: false}, "#senja-collector-iframe");</script>
+                <div class="collector-wrapper">
+                    <script type="text/javascript" src="https://widget.senja.io/js/iframeResizer.min.js"></script>
+                    <iframe id="senja-collector-iframe" src="https://senja.io/p/calcola-sconto/r/P5EDI4?mode=embed" allow="camera;microphone" title="Senja form" frameborder="0" scrolling="no" width="100%" height="500"></iframe>
+                    <script type="text/javascript">iFrameResize({log: false, checkOrigin: false}, "#senja-collector-iframe");</script>
+                </div>
             </div>
 
             <hr style="border: 0; border-top: 1px solid #f0edf5; margin: 40px 0;">
@@ -180,6 +191,7 @@
         function gestioneCookie(accetta) { localStorage.setItem('cookieScelta', 'fatto'); localStorage.setItem('cookieAccettati', accetta); document.getElementById('cookie-banner').style.display = 'none'; }
         function resetCookie() { localStorage.removeItem('cookieScelta'); location.reload(); }
         function pulisci(val) { return parseFloat(val.toString().replace(',', '.')); }
+        
         function motoreUX(t) {
             const p=document.getElementById('in-pieno'), s=document.getElementById('in-sconto'), f=document.getElementById('in-finale');
             if (buffer[buffer.length-1]!==t) { buffer.push(t); if(buffer.length>2) buffer.shift(); }
@@ -190,6 +202,7 @@
                 else if (!buffer.includes('p') && !isNaN(vF) && !isNaN(vS)) { if(vS<100) p.value = ((vF*100)/(100-vS)).toFixed(2); }
             }
         }
+        
         function aggiungi() {
             const pI=document.getElementById('in-pieno'), fI=document.getElementById('in-finale'), nI=document.getElementById('in-nome');
             let vP = pulisci(pI.value), vF = pulisci(fI.value);
@@ -197,6 +210,7 @@
             carrello.push({n: nI.value||"Articolo", p: vP, f: vF});
             resetCampi(); aggiornaUI();
         }
+        
         function aggiornaUI() {
             const lista=document.getElementById('lista-corpo'), recap=document.getElementById('recap-ui');
             recap.style.display = carrello.length > 0 ? 'block' : 'none';
@@ -215,9 +229,11 @@
             document.getElementById('out-r').innerText = risp.toFixed(2).replace('.', ',');
             document.getElementById('out-sm').innerText = sMedio.toFixed(1);
         }
+        
         function resetCampi() { document.getElementById('in-pieno').value=''; document.getElementById('in-sconto').value=''; document.getElementById('in-finale').value=''; document.getElementById('in-nome').value=''; buffer=[]; }
         function elimina(i) { carrello.splice(i,1); aggiornaUI(); }
         function svuota() { if(confirm("Svuotare tutto?")) { carrello=[]; aggiornaUI(); } }
+        
         function condividiTesto() { 
             let testo = "Ecco il mio risparmio su CalcolaSconto.it:\n";
             carrello.forEach(i => testo += `- ${i.n}: €${i.f.toFixed(2)}\n`);
