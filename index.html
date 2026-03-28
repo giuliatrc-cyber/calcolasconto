@@ -77,13 +77,16 @@
 </head>
 <body>
 
-    <div id="cookie-banner">
-        <p><strong>🍪 Privacy & Cookie</strong><br>Usiamo cookie statistici (Analytics) e Senja per migliorare l'esperienza. Accetti?</p>
-        <div style="display:flex; gap:10px; justify-content: flex-end;">
-            <button onclick="gestioneCookie(false)" style="background:#f0edf5; border:none; padding:10px 20px; border-radius:14px; cursor:pointer">Rifiuta</button>
-            <button onclick="gestioneCookie(true)" style="background:var(--main-purple); color:white; border:none; padding:10px 20px; border-radius:14px; cursor:pointer; font-weight:bold">Accetta</button>
-        </div>
+    <div id="cookie-banner" style="position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); width: 90%; max-width: 400px; background: white; border: 2px solid #e0d8f0; border-radius: 30px; padding: 20px; box-shadow: 0 10px 25px rgba(177, 156, 217, 0.2); z-index: 10000; text-align: center; font-family: sans-serif;">
+    <p style="margin: 0 0 15px 0; font-size: 14px; color: #8e7ca8; line-height: 1.4;">
+        <strong>🍪 Privacy & Cookie</strong><br>
+        Usiamo cookie statistici (Analytics) e Senja per migliorare l'esperienza. Accetti?
+    </p>
+    <div style="display: flex; gap: 10px; justify-content: center;">
+        <button onclick="gestioneCookie(false)" style="background: #f0edf5; color: #8e7ca8; border: none; padding: 10px 20px; border-radius: 20px; cursor: pointer; font-size: 13px;">Rifiuta</button>
+        <button onclick="gestioneCookie(true)" style="background: #b19cd9; color: white; border: none; padding: 10px 25px; border-radius: 20px; cursor: pointer; font-weight: bold; font-size: 13px;">Accetta</button>
     </div>
+</div>
 
     <header>
         <h1>CalcolaSconto.it</h1>
