@@ -71,7 +71,6 @@
 
         footer { background: #fff; padding: 50px 20px; text-align: center; border-top: 1px solid #f0edf5; font-size: 13px; color: var(--text-soft); }
         
-        /* Stile del Banner Cookie - Bolla Moderna */
         #cookie-banner { 
             position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); 
             width: 90%; max-width: 400px; background: white; border: 2px solid #e0d8f0; 
@@ -168,8 +167,9 @@
     <script>
         let carrello = []; let buffer = [];
         
-        // Gestione apparizione banner
+        // UNICA FUNZIONE ONLOAD
         window.onload = function() { 
+            // Mostra banner se non c'è scelta salvata
             if (localStorage.getItem('cookieScelta') === null) { 
                 document.getElementById('cookie-banner').style.display = 'block'; 
             } 
@@ -209,21 +209,23 @@
         
         function aggiornaUI() {
             const lista=document.getElementById('lista-corpo'), recap=document.getElementById('recap-ui');
-            recap.style.display = carrello.length > 0 ? 'block' : 'none';
-            lista.innerHTML=''; let tP=0, tF=0;
-            carrello.forEach((item, i) => {
-                tP+=item.p; tF+=item.f;
-                lista.innerHTML += `<div style="display:flex; justify-content:space-between; padding:10px; border-bottom:1px solid #f0edf5; font-size:13px;"><span>${item.n}: €${item.f.toFixed(2)}</span><span onclick="elimina(${i})" style="cursor:pointer; color:#ccc">✕</span></div>`;
-            });
-            let risp = tP - tF;
-            let sMedio = tP > 0 ? ((risp / tP) * 100) : 0;
-            document.getElementById('out-p').innerText = tP.toFixed(2).replace('.', ',');
-            document.getElementById('out-f').innerText = tF.toFixed(2).replace('.', ',');
-            document.getElementById('out-r').innerText = risp.toFixed(2).replace('.', ',');
-            document.getElementById('out-sm').innerText = sMedio.toFixed(1);
+            if(recap) recap.style.display = carrello.length > 0 ? 'block' : 'none';
+            if(lista) {
+                lista.innerHTML=''; let tP=0, tF=0;
+                carrello.forEach((item, i) => {
+                    tP+=item.p; tF+=item.f;
+                    lista.innerHTML += `<div style="display:flex; justify-content:space-between; padding:10px; border-bottom:1px solid #f0edf5; font-size:13px;"><span>${item.n}: €${item.f.toFixed(2)}</span><span onclick="elimina(${i})" style="cursor:pointer; color:#ccc">✕</span></div>`;
+                });
+                let risp = tP - tF;
+                let sMedio = tP > 0 ? ((risp / tP) * 100) : 0;
+                document.getElementById('out-p').innerText = tP.toFixed(2).replace('.', ',');
+                document.getElementById('out-f').innerText = tF.toFixed(2).replace('.', ',');
+                document.getElementById('out-r').innerText = risp.toFixed(2).replace('.', ',');
+                document.getElementById('out-sm').innerText = sMedio.toFixed(1);
+            }
         }
 
-       function condividiLista() {
+        function condividiLista() {
             let testo = "La mia lista sconti su CalcolaSconto.it:\n\n";
             carrello.forEach(i => { testo += `- ${i.n}: €${i.f.toFixed(2)}\n`; });
             testo += `\nTotale Pagato: €${document.getElementById('out-f').innerText}\nRisparmio Reale: €${document.getElementById('out-r').innerText}`;
@@ -241,27 +243,8 @@
             document.getElementById('in-nome').value=''; 
             buffer=[]; 
         }
-        
         function elimina(i) { carrello.splice(i,1); aggiornaUI(); }
-        
         function svuota() { if(confirm("Svuotare tutto?")) { carrello=[]; aggiornaUI(); } }
-
-        // --- GESTIONE COOKIE BANNER ---
-        window.addEventListener('load', function() {
-            if (localStorage.getItem('cookieScelta') === null) {
-                document.getElementById('cookie-banner').style.display = 'block';
-            }
-        });
-
-        function gestioneCookie(accetta) {
-            localStorage.setItem('cookieScelta', 'fatto');
-            document.getElementById('cookie-banner').style.display = 'none';
-        }
-
-        function resetCookie() {
-            localStorage.removeItem('cookieScelta');
-            location.reload();
-        }
     </script>
 </body>
 </html>
