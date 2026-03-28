@@ -2,7 +2,7 @@
 <html lang="it">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Calcola Sconto Online - Calcolatore Sconto Inverso e Percentuale</title>
     <meta name="description" content="Il calcolatore di sconti più rapido online. Calcola il prezzo finale, lo sconto percentuale o il prezzo di listino originale in un click con formule spiegate.">
     
@@ -41,7 +41,7 @@
 
     <style>
         :root { --main-purple: #b19cd9; --main-purple-sat: #9d81d1; --text-soft: #a499bc; --bg-light: #faf9ff; --gray-mute: #e0dbe6; }
-        body { background: var(--bg-light); margin: 0; font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; display: flex; flex-direction: column; min-height: 100vh; color: #444; line-height: 1.5; }
+        body { background: var(--bg-light); margin: 0; font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; display: flex; flex-direction: column; min-height: 100vh; color: #444; line-height: 1.5; overflow-x: hidden; }
         header { background: white; padding: 30px 20px; text-align: center; border-bottom: 1px solid #f0edf5; }
         header h1 { color: #8e7ca8; margin: 0; font-size: 28px; font-weight: 800; letter-spacing: -1px; }
         .ux-desc { max-width: 500px; margin: 15px auto 0; font-size: 14px; color: var(--text-soft); font-style: italic; }
@@ -56,54 +56,55 @@
         .btn-fav:hover svg { fill: white; }
 
         .instruction-tag { font-size: 11px; color: var(--main-purple); font-weight: 800; text-transform: uppercase; margin: 20px auto 10px; letter-spacing: 1px; display: block; text-align: center; }
-        .main-content { flex: 1; padding: 10px 20px 30px; display: flex; flex-direction: column; align-items: center; }
-        #app-box { max-width: 480px; width: 100%; background: white; padding: 30px; border-radius: 35px; box-shadow: 0 15px 50px rgba(180, 160, 200, 0.12); border: 1px solid #f0edf5; box-sizing: border-box; text-align: center; }
+        .main-content { flex: 1; padding: 10px 10px 30px; display: flex; flex-direction: column; align-items: center; width: 100%; box-sizing: border-box; }
+        #app-box { max-width: 480px; width: 100%; background: white; padding: 25px; border-radius: 35px; box-shadow: 0 15px 50px rgba(180, 160, 200, 0.12); border: 1px solid #f0edf5; box-sizing: border-box; text-align: center; }
         
         label { font-size: 9px; color: var(--text-soft); font-weight: 800; display: block; margin-bottom: 6px; text-transform: uppercase; text-align: left; }
         .zen-input { width: 100%; padding: 14px; border: 2px solid #f6f3f9; border-radius: 14px; outline: none; font-size: 16px; box-sizing: border-box; transition: 0.3s; margin-bottom: 5px; }
         .zen-input:focus { border-color: var(--main-purple); background: white; }
         
-        .grid-inputs { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin-top: 18px; }
+        .grid-inputs { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; margin-top: 18px; }
         .highlight-field { background: #fffdf5; border-color: #fff9e6; color: #8e7ca8; font-weight: bold; }
         
-        .actions { display: flex; gap: 12px; margin: 25px 0; }
+        .actions { display: flex; gap: 10px; margin: 25px 0; }
         .btn-pri, .btn-sec { cursor: pointer; border-radius: 18px; font-weight: 800; display: flex; align-items: center; justify-content: center; height: 55px; border: none; flex: 1; transition: 0.2s; }
         .btn-pri { background: var(--main-purple); color: white; flex: 2; font-size: 15px; }
         .btn-pri:hover { background: var(--main-purple-sat); }
         .btn-sec { background: white; border: 2px solid #f0edf5; color: var(--text-soft); }
         
         #lista-corpo { max-height: 180px; overflow-y: auto; margin-bottom: 15px; border-top: 1px solid #f8f6fb; text-align: left; }
-        .summary-box { background: #fdfcff; padding: 25px; border-radius: 25px; border: 1px solid #f0edf5; margin-top: 10px; }
+        .summary-box { background: #fdfcff; padding: 20px; border-radius: 25px; border: 1px solid #f0edf5; margin-top: 10px; }
         .summary-line { display: flex; justify-content: space-between; margin-bottom: 10px; color: var(--text-soft); font-size: 14px; }
         .btn-clear-list { background: transparent; border: 1px solid #eee; color: #ccc; padding: 10px; border-radius: 12px; font-size: 11px; font-weight: bold; cursor: pointer; text-transform: uppercase; width: 100%; margin-top: 10px;}
         
         .faq-section { max-width: 600px; width: 100%; margin-top: 40px; }
-        .faq-section h2 { color: #8e7ca8; font-size: 20px; text-align: center; margin-bottom: 25px; font-weight: 800; }
-        .faq-section details { background: white; padding: 18px; border-radius: 18px; border: 1px solid #f0edf5; margin-bottom: 12px; cursor: pointer; text-align: left; }
-        .faq-section summary { font-size: 15px; font-weight: 700; color: #8e7ca8; outline: none; }
+        .faq-section h2 { color: #8e7ca8; font-size: 18px; text-align: center; margin-bottom: 25px; font-weight: 800; }
+        .faq-section details { background: white; padding: 15px; border-radius: 18px; border: 1px solid #f0edf5; margin-bottom: 12px; cursor: pointer; text-align: left; }
+        .faq-section summary { font-size: 14px; font-weight: 700; color: #8e7ca8; outline: none; }
         .formula-box { background: #f8f6fb; padding: 15px; border-radius: 12px; font-family: 'Segoe UI', sans-serif; display: block; margin: 12px 0; color: #7a6a94; border-left: 4px solid var(--main-purple); font-size: 13px; line-height: 1.6; }
         
-        #cookie-banner { position: fixed; bottom: 25px; left: 25px; right: 25px; background: white; padding: 25px; border-radius: 25px; box-shadow: 0 15px 50px rgba(0,0,0,0.15); border: 2px solid var(--main-purple); z-index: 10000; display: none; flex-direction: column; gap: 15px; max-width: 500px; margin: 0 auto; }
-        footer { background: #fff; padding: 50px 20px; text-align: center; border-top: 1px solid #f0edf5; font-size: 13px; color: var(--text-soft); }
+        #cookie-banner { position: fixed; bottom: 20px; left: 10px; right: 10px; background: white; padding: 20px; border-radius: 25px; box-shadow: 0 15px 50px rgba(0,0,0,0.15); border: 2px solid var(--main-purple); z-index: 10000; display: none; flex-direction: column; gap: 15px; max-width: 500px; margin: 0 auto; }
+        footer { background: #fff; padding: 40px 20px; text-align: center; border-top: 1px solid #f0edf5; font-size: 12px; color: var(--text-soft); }
         a { color: #8e7ca8; text-decoration: none; font-weight: 600; cursor: pointer; }
         
-        .reviews-pure-widget { margin: 40px 0; width: 100%; max-width: 650px; display: flex; flex-direction: column; align-items: center; }
-        .collector-wrapper { width: 100%; max-width: 450px; height: 280px; overflow-y: auto; border-radius: 20px; box-shadow: 0 5px 20px rgba(180, 160, 200, 0.08); border: 1px solid #f0edf5; background: white; }
+        /* Widget Senja Responsivo */
+        .reviews-pure-widget { margin: 30px 0; width: 100%; max-width: 480px; display: flex; flex-direction: column; align-items: center; }
+        .collector-wrapper { width: 100%; height: 220px; overflow-y: auto; border-radius: 20px; box-shadow: 0 5px 15px rgba(180, 160, 200, 0.08); border: 1px solid #f0edf5; background: white; -webkit-overflow-scrolling: touch; }
     </style>
 </head>
 <body>
 
     <div id="cookie-banner">
-        <p><strong>🍪 La tua Privacy</strong><br>Usiamo cookie statistici (Google Analytics) e widget di terze parti (Senja) per visualizzare le recensioni. Puoi accettare o rifiutare senza limitazioni.</p>
+        <p style="font-size: 13px; margin: 0;"><strong>🍪 Privacy</strong><br>Usiamo cookie statistici e widget Senja. Puoi accettare o continuare senza.</p>
         <div style="display:flex; gap:10px; justify-content: flex-end;">
-            <button onclick="gestioneCookie(false)" style="background:#f0edf5; border:none; padding:10px 20px; border-radius:14px; cursor:pointer">Rifiuta</button>
-            <button onclick="gestioneCookie(true)" style="background:var(--main-purple); color:white; border:none; padding:10px 20px; border-radius:14px; cursor:pointer; font-weight:bold">Accetta</button>
+            <button onclick="gestioneCookie(false)" style="background:#f0edf5; border:none; padding:8px 15px; border-radius:12px; cursor:pointer; font-size:12px;">Rifiuta</button>
+            <button onclick="gestioneCookie(true)" style="background:var(--main-purple); color:white; border:none; padding:8px 15px; border-radius:12px; cursor:pointer; font-weight:bold; font-size:12px;">Accetta</button>
         </div>
     </div>
 
     <header>
         <h1>CalcolaSconto.it</h1>
-        <p class="ux-desc">Lo strumento veloce per sconti, scorpori e liste della spesa.</p>
+        <p class="ux-desc">Lo strumento veloce per sconti e liste spesa.</p>
         <button onclick="addFavorite()" class="btn-fav">
             <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
             Salva tra i preferiti
@@ -111,73 +112,66 @@
     </header>
 
     <div class="main-content">
-        <span class="instruction-tag">Inserisci 2 valori per calcolare il 3°</span>
+        <span class="instruction-tag">Inserisci 2 valori</span>
         <div id="app-box">
-            <label>Cosa stai scontando? (opzionale)</label>
-            <input type="text" id="in-nome" placeholder="es. Scarpe, Maglione..." class="zen-input" style="margin-bottom:15px">
+            <label>Articolo (opzionale)</label>
+            <input type="text" id="in-nome" placeholder="es. Scarpe..." class="zen-input" style="margin-bottom:15px">
 
             <div class="grid-inputs">
-                <div><label>Listino (€)</label><input type="text" id="in-pieno" placeholder="0.00" oninput="motoreUX('p')" class="zen-input"></div>
-                <div><label>Sconto (%)</label><input type="text" id="in-sconto" placeholder="0" oninput="motoreUX('s')" class="zen-input"></div>
-                <div><label>Pagato (€)</label><input type="text" id="in-finale" placeholder="0.00" oninput="motoreUX('f')" class="zen-input highlight-field"></div>
+                <div><label>Prezzo (€)</label><input type="number" id="in-pieno" placeholder="0" oninput="motoreUX('p')" class="zen-input"></div>
+                <div><label>Sconto (%)</label><input type="number" id="in-sconto" placeholder="0" oninput="motoreUX('s')" class="zen-input"></div>
+                <div><label>Finale (€)</label><input type="number" id="in-finale" placeholder="0" oninput="motoreUX('f')" class="zen-input highlight-field"></div>
             </div>
 
             <div class="actions">
-                <button onclick="resetCampi()" class="btn-sec">↺ Pulisci</button>
-                <button onclick="aggiungi()" class="btn-pri">Aggiungi alla Lista</button>
+                <button onclick="resetCampi()" class="btn-sec">↺ Reset</button>
+                <button onclick="aggiungi()" class="btn-pri">Aggiungi</button>
             </div>
 
             <div id="lista-corpo"></div>
 
             <div id="recap-ui" style="display: none;">
                 <div class="summary-box">
-                    <div class="summary-line"><span>Totale listino:</span><strong>€ <span id="out-p">0,00</span></strong></div>
-                    <div class="summary-line"><span>Totale pagato:</span><strong>€ <span id="out-f">0,00</span></strong></div>
+                    <div class="summary-line"><span>Pagato:</span><strong>€ <span id="out-f">0,00</span></strong></div>
                     <div class="summary-line"><span>Sconto medio:</span><strong><span id="out-sm">0</span>%</strong></div>
-                    <div style="text-align: center; margin-top: 15px; padding-top:10px; border-top: 1px dashed #eee;">
-                        <p style="margin: 0; font-size: 11px; color: #a499bc; font-weight: 600;">RISPARMIO REALE</p>
-                        <div style="font-size: 34px; color: #9d81d1; font-weight: 800;">€ <span id="out-r">0,00</span></div>
+                    <div style="text-align: center; margin-top: 10px; padding-top:10px; border-top: 1px dashed #eee;">
+                        <p style="margin: 0; font-size: 10px; color: #a499bc;">RISPARMIO</p>
+                        <div style="font-size: 28px; color: #9d81d1; font-weight: 800;">€ <span id="out-r">0,00</span></div>
                     </div>
-                    <button class="btn-pri" style="height:45px; font-size:13px; width:100%; margin-top:15px" onclick="condividiTesto()">Condividi Risultati</button>
-                    <button class="btn-clear-list" onclick="svuota()">✕ Svuota Tutto</button>
+                    <button class="btn-clear-list" onclick="svuota()">✕ Svuota Lista</button>
                 </div>
             </div>
         </div>
 
         <div class="reviews-pure-widget">
-            <div style="margin-bottom: 30px; text-align: center; width: 100%;">
-                <h3 style="color: #8e7ca8; font-size: 16px; font-weight: 800; margin-bottom: 12px;">Ti piace? Lascia un voto! ✨</h3>
+            <div style="margin-bottom: 25px; text-align: center; width: 100%;">
+                <h3 style="color: #8e7ca8; font-size: 15px; font-weight: 800; margin-bottom: 10px;">Ti piace? Vota qui! ✨</h3>
                 <div class="collector-wrapper">
-                    <script type="text/javascript" src="https://widget.senja.io/js/iframeResizer.min.js"></script>
-                    <iframe id="senja-collector-iframe" src="https://senja.io/p/calcola-sconto/r/P5EDI4?mode=embed" allow="camera;microphone" title="Senja form" frameborder="0" scrolling="no" width="100%" height="280"></iframe>
-                    <script type="text/javascript">iFrameResize({log: false, checkOrigin: false}, "#senja-collector-iframe");</script>
+                    <iframe id="senja-collector-iframe" src="https://senja.io/p/calcola-sconto/r/P5EDI4?mode=embed" allow="camera;microphone" title="Senja form" frameborder="0" scrolling="yes" width="100%" height="220" style="border-radius:20px;"></iframe>
                 </div>
             </div>
 
-            <hr style="border: 0; border-top: 1px solid #f0edf5; width: 100%; margin: 30px 0;">
+            <hr style="border: 0; border-top: 1px solid #f0edf5; width: 80%; margin: 20px 0;">
 
             <script src="https://widget.senja.io/widget/9bd76c3c-f1a3-4abd-8c80-e7359d6644dd/platform.js" type="text/javascript" async></script>
             <div class="senja-embed" data-id="9bd76c3c-f1a3-4abd-8c80-e7359d6644dd" data-mode="shadow" data-lazyload="false" style="display: block; width: 100%;"></div>
         </div>
 
         <section class="faq-section">
-            <h2>Guida e Privacy</h2>
-            <details open><summary>1. Calcolo del Prezzo Scontato</summary><div class="formula-box"><strong>Formula:</strong> Prezzo Finale = Listino - (Listino * Sconto / 100)</div></details>
-            <details><summary>2. Calcolo dello Sconto Inverso</summary><div class="formula-box"><strong>Formula:</strong> Prezzo Originale = (Pagato * 100) / (100 - % Sconto)</div></details>
-            <details><summary>3. Calcolo della Percentuale di Sconto</summary><div class="formula-box"><strong>Formula:</strong> % Sconto = [(Listino - Pagato) / Listino] * 100</div></details>
-            <details><summary>4. Privacy e Dati Riservati</summary><div class="formula-box"><strong>Dati al sicuro:</strong> I tuoi calcoli e le liste non vengono mai salvati sui nostri server. Tutto resta nel tuo browser.</div></details>
+            <details><summary>Come funziona il calcolo?</summary><div class="formula-box">Inserisci il prezzo originale e la percentuale per sapere quanto paghi. Oppure inserisci quanto hai pagato e lo sconto per scoprire il prezzo di partenza.</div></details>
+            <details><summary>Privacy Dati</summary><div class="formula-box">Nulla viene salvato online. I tuoi calcoli restano privati sul tuo telefono.</div></details>
         </section>
     </div>
 
     <footer>
-        <p>&copy; 2026 CalcolaSconto.it | <a href="mailto:info@calcolasconto.it">info@calcolasconto.it</a></p>
-        <p><a onclick="resetCookie()">Gestione Privacy e Cookie</a></p>
+        <p>&copy; 2026 CalcolaSconto.it | <a href="mailto:info@calcolasconto.it">Contatti</a></p>
+        <p><a onclick="resetCookie()">Privacy Policy</a></p>
     </footer>
 
     <script>
         let carrello = []; let buffer = [];
         window.onload = function() { if (localStorage.getItem('cookieScelta') === null) { document.getElementById('cookie-banner').style.display = 'flex'; } };
-        function addFavorite() { const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent); if (isMobile) { alert("📱 PER AGGIUNGERE ALLA HOME:\n\n1. Tocca 'Condividi'.\n2. Clicca su 'Aggiungi alla schermata Home'."); } else { alert("⭐ AGGIUNGI AI PREFERITI:\n\nPremi CTRL + D (Windows) o CMD + D (Mac)"); } }
+        function addFavorite() { alert("⭐ AGGIUNGI AI PREFERITI:\n\nUsa il tasto 'Condividi' del browser e seleziona 'Aggiungi alla Home'"); }
         function gestioneCookie(accetta) { localStorage.setItem('cookieScelta', 'fatto'); localStorage.setItem('cookieAccettati', accetta); document.getElementById('cookie-banner').style.display = 'none'; }
         function resetCookie() { localStorage.removeItem('cookieScelta'); location.reload(); }
         function pulisci(val) { return parseFloat(val.toString().replace(',', '.')); }
@@ -204,15 +198,11 @@
             lista.innerHTML=''; let tP=0, tF=0;
             carrello.forEach((item, i) => { tP+=item.p; tF+=item.f; lista.innerHTML += `<div style="display:flex; justify-content:space-between; padding:10px; border-bottom:1px solid #f0edf5; font-size:13px;"><span>${item.n}: €${item.f.toFixed(2)}</span><span onclick="elimina(${i})" style="cursor:pointer; color:#ccc">✕</span></div>`; });
             let risp = tP - tF; let sMedio = tP > 0 ? ((risp / tP) * 100) : 0;
-            document.getElementById('out-p').innerText = tP.toFixed(2).replace('.', ','); document.getElementById('out-f').innerText = tF.toFixed(2).replace('.', ','); document.getElementById('out-r').innerText = risp.toFixed(2).replace('.', ','); document.getElementById('out-sm').innerText = sMedio.toFixed(1);
+            document.getElementById('out-f').innerText = tF.toFixed(2).replace('.', ','); document.getElementById('out-r').innerText = risp.toFixed(2).replace('.', ','); document.getElementById('out-sm').innerText = sMedio.toFixed(1);
         }
         function resetCampi() { document.getElementById('in-pieno').value=''; document.getElementById('in-sconto').value=''; document.getElementById('in-finale').value=''; document.getElementById('in-nome').value=''; buffer=[]; }
         function elimina(i) { carrello.splice(i,1); aggiornaUI(); }
         function svuota() { if(confirm("Svuotare tutto?")) { carrello=[]; aggiornaUI(); } }
-        function condividiTesto() { 
-            let testo = "Ecco il mio risparmio su CalcolaSconto.it:\n"; carrello.forEach(i => testo += `- ${i.n}: €${i.f.toFixed(2)}\n`); testo += `\nRisparmio totale: €${document.getElementById('out-r').innerText}`;
-            if (navigator.share) { navigator.share({ title: 'Mio Risparmio', text: testo, url: 'https://www.calcolasconto.it' }); } else { alert("Risultati copiati negli appunti!"); }
-        }
     </script>
 </body>
 </html>
