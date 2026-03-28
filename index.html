@@ -81,8 +81,7 @@
         footer { background: #fff; padding: 50px 20px; text-align: center; border-top: 1px solid #f0edf5; font-size: 13px; color: var(--text-soft); }
         a { color: #8e7ca8; text-decoration: none; font-weight: 600; cursor: pointer; }
         
-        /* Contenitore Widget aggiornato */
-        .reviews-pure-widget { margin: 40px 0; width: 100%; max-width: 650px; min-height: 250px; }
+        .reviews-pure-widget { margin: 40px 0; width: 100%; max-width: 650px; }
     </style>
 </head>
 <body>
@@ -139,8 +138,19 @@
         </div>
 
         <div class="reviews-pure-widget">
+            
+            <div style="margin-bottom: 40px; text-align: center;">
+                <h3 style="color: #8e7ca8; font-size: 18px; font-weight: 800; margin-bottom: 15px;">Ti piace CalcolaSconto.it? Lascia un voto! ✨</h3>
+                <script type="text/javascript" src="https://widget.senja.io/js/iframeResizer.min.js"></script>
+                <iframe id="senja-collector-iframe" src="https://senja.io/p/calcola-sconto/r/P5EDI4?mode=embed" allow="camera;microphone" title="Senja form" frameborder="0" scrolling="no" width="100%" height="700"></iframe>
+                <script type="text/javascript">iFrameResize({log: false, checkOrigin: false}, "#senja-collector-iframe");</script>
+            </div>
+
+            <hr style="border: 0; border-top: 1px solid #f0edf5; margin: 40px 0;">
+
             <script src="https://widget.senja.io/widget/9bd76c3c-f1a3-4abd-8c80-e7359d6644dd/platform.js" type="text/javascript" async></script>
             <div class="senja-embed" data-id="9bd76c3c-f1a3-4abd-8c80-e7359d6644dd" data-mode="shadow" data-lazyload="false" style="display: block; width: 100%;"></div>
+            
         </div>
 
         <section class="faq-section">
