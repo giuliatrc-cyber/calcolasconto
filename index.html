@@ -6,7 +6,7 @@
     <title>Calcola Sconto Online - Calcolatore Sconto Inverso e Percentuale</title>
     <meta name="description" content="Il calcolatore di sconti più rapido online. Calcola il prezzo finale, lo sconto percentuale o il prezzo di listino originale in un click con formule spiegate.">
     
-    <meta name="google-site-verification" content="INSERISCI_QUI_IL_TUO_CODICE_SEARCH_CONSOLE">
+    <meta name="google-site-verification" content="googlee27f197bcf337da2" />
 
     <script type="application/ld+json">
     {
@@ -46,7 +46,6 @@
         header h1 { color: #8e7ca8; margin: 0; font-size: 28px; font-weight: 800; letter-spacing: -1px; }
         .ux-desc { max-width: 500px; margin: 15px auto 0; font-size: 14px; color: var(--text-soft); font-style: italic; }
         
-        /* Bottone con Stellina Professionale */
         .btn-fav { 
             background: #f3effa; border: 1px solid var(--main-purple); color: #8e7ca8; padding: 8px 18px; border-radius: 25px; 
             font-size: 12px; font-weight: 700; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; 
@@ -88,9 +87,8 @@
         footer { background: #fff; padding: 50px 20px; text-align: center; border-top: 1px solid #f0edf5; font-size: 13px; color: var(--text-soft); }
         a { color: #8e7ca8; text-decoration: none; font-weight: 600; cursor: pointer; }
         
-        /* Contenitore Widget */
-        .reviews-pure-widget { margin: 40px 0; width: 100%; max-width: 650px; }
-        .collector-wrapper { width: 100%; max-height: 500px; overflow-y: auto; border-radius: 25px; box-shadow: 0 10px 30px rgba(180, 160, 200, 0.1); border: 1px solid #f0edf5; background: white; }
+        .reviews-pure-widget { margin: 40px 0; width: 100%; max-width: 650px; display: flex; flex-direction: column; align-items: center; }
+        .collector-wrapper { width: 100%; max-width: 450px; height: 280px; overflow-y: auto; border-radius: 20px; box-shadow: 0 5px 20px rgba(180, 160, 200, 0.08); border: 1px solid #f0edf5; background: white; }
     </style>
 </head>
 <body>
@@ -147,29 +145,27 @@
         </div>
 
         <div class="reviews-pure-widget">
-            
-            <div style="margin-bottom: 40px; text-align: center;">
-                <h3 style="color: #8e7ca8; font-size: 18px; font-weight: 800; margin-bottom: 15px;">Ti piace CalcolaSconto.it? Lascia un voto! ✨</h3>
+            <div style="margin-bottom: 30px; text-align: center; width: 100%;">
+                <h3 style="color: #8e7ca8; font-size: 16px; font-weight: 800; margin-bottom: 12px;">Ti piace? Lascia un voto! ✨</h3>
                 <div class="collector-wrapper">
                     <script type="text/javascript" src="https://widget.senja.io/js/iframeResizer.min.js"></script>
-                    <iframe id="senja-collector-iframe" src="https://senja.io/p/calcola-sconto/r/P5EDI4?mode=embed" allow="camera;microphone" title="Senja form" frameborder="0" scrolling="no" width="100%" height="500"></iframe>
+                    <iframe id="senja-collector-iframe" src="https://senja.io/p/calcola-sconto/r/P5EDI4?mode=embed" allow="camera;microphone" title="Senja form" frameborder="0" scrolling="no" width="100%" height="280"></iframe>
                     <script type="text/javascript">iFrameResize({log: false, checkOrigin: false}, "#senja-collector-iframe");</script>
                 </div>
             </div>
 
-            <hr style="border: 0; border-top: 1px solid #f0edf5; margin: 40px 0;">
+            <hr style="border: 0; border-top: 1px solid #f0edf5; width: 100%; margin: 30px 0;">
 
             <script src="https://widget.senja.io/widget/9bd76c3c-f1a3-4abd-8c80-e7359d6644dd/platform.js" type="text/javascript" async></script>
             <div class="senja-embed" data-id="9bd76c3c-f1a3-4abd-8c80-e7359d6644dd" data-mode="shadow" data-lazyload="false" style="display: block; width: 100%;"></div>
-            
         </div>
 
         <section class="faq-section">
             <h2>Guida e Privacy</h2>
-            <details open><summary>1. Calcolo del Prezzo Scontato</summary><div class="formula-box"><strong>Formula:</strong> Prezzo Finale = Listino - (Listino * Sconto / 100)<br><strong>Esempio:</strong> 100€ - 20% = 80€</div></details>
-            <details><summary>2. Calcolo dello Sconto Inverso</summary><div class="formula-box"><strong>Formula:</strong> Prezzo Originale = (Pagato * 100) / (100 - % Sconto)<br><strong>Esempio:</strong> Pagato 75€ con sconto 25% -> Costava 100€</div></details>
+            <details open><summary>1. Calcolo del Prezzo Scontato</summary><div class="formula-box"><strong>Formula:</strong> Prezzo Finale = Listino - (Listino * Sconto / 100)</div></details>
+            <details><summary>2. Calcolo dello Sconto Inverso</summary><div class="formula-box"><strong>Formula:</strong> Prezzo Originale = (Pagato * 100) / (100 - % Sconto)</div></details>
             <details><summary>3. Calcolo della Percentuale di Sconto</summary><div class="formula-box"><strong>Formula:</strong> % Sconto = [(Listino - Pagato) / Listino] * 100</div></details>
-            <details><summary>4. Privacy e Dati Riservati</summary><div class="formula-box"><strong>Dati al sicuro:</strong> I tuoi calcoli e le liste della spesa che crei non vengono mai salvati sui nostri server né condivisi. Restano esclusivamente nel tuo browser per garantirti il massimo della privacy. Usiamo Analytics e Senja solo per migliorare l'esperienza e mostrare i feedback degli utenti.</div></details>
+            <details><summary>4. Privacy e Dati Riservati</summary><div class="formula-box"><strong>Dati al sicuro:</strong> I tuoi calcoli e le liste non vengono mai salvati sui nostri server. Tutto resta nel tuo browser.</div></details>
         </section>
     </div>
 
@@ -181,17 +177,10 @@
     <script>
         let carrello = []; let buffer = [];
         window.onload = function() { if (localStorage.getItem('cookieScelta') === null) { document.getElementById('cookie-banner').style.display = 'flex'; } };
-        
-        function addFavorite() {
-            const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-            if (isMobile) { alert("📱 PER AGGIUNGERE ALLA HOME:\n\n1. Tocca 'Condividi'.\n2. Clicca su 'Aggiungi alla schermata Home'."); }
-            else { alert("⭐ AGGIUNGI AI PREFERITI:\n\nPremi CTRL + D (Windows) o CMD + D (Mac)"); }
-        }
-
+        function addFavorite() { const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent); if (isMobile) { alert("📱 PER AGGIUNGERE ALLA HOME:\n\n1. Tocca 'Condividi'.\n2. Clicca su 'Aggiungi alla schermata Home'."); } else { alert("⭐ AGGIUNGI AI PREFERITI:\n\nPremi CTRL + D (Windows) o CMD + D (Mac)"); } }
         function gestioneCookie(accetta) { localStorage.setItem('cookieScelta', 'fatto'); localStorage.setItem('cookieAccettati', accetta); document.getElementById('cookie-banner').style.display = 'none'; }
         function resetCookie() { localStorage.removeItem('cookieScelta'); location.reload(); }
         function pulisci(val) { return parseFloat(val.toString().replace(',', '.')); }
-        
         function motoreUX(t) {
             const p=document.getElementById('in-pieno'), s=document.getElementById('in-sconto'), f=document.getElementById('in-finale');
             if (buffer[buffer.length-1]!==t) { buffer.push(t); if(buffer.length>2) buffer.shift(); }
@@ -202,7 +191,6 @@
                 else if (!buffer.includes('p') && !isNaN(vF) && !isNaN(vS)) { if(vS<100) p.value = ((vF*100)/(100-vS)).toFixed(2); }
             }
         }
-        
         function aggiungi() {
             const pI=document.getElementById('in-pieno'), fI=document.getElementById('in-finale'), nI=document.getElementById('in-nome');
             let vP = pulisci(pI.value), vF = pulisci(fI.value);
@@ -210,36 +198,20 @@
             carrello.push({n: nI.value||"Articolo", p: vP, f: vF});
             resetCampi(); aggiornaUI();
         }
-        
         function aggiornaUI() {
             const lista=document.getElementById('lista-corpo'), recap=document.getElementById('recap-ui');
             recap.style.display = carrello.length > 0 ? 'block' : 'none';
             lista.innerHTML=''; let tP=0, tF=0;
-            carrello.forEach((item, i) => {
-                tP+=item.p; tF+=item.f;
-                lista.innerHTML += `<div style="display:flex; justify-content:space-between; padding:10px; border-bottom:1px solid #f0edf5; font-size:13px;">
-                    <span>${item.n}: €${item.f.toFixed(2)}</span>
-                    <span onclick="elimina(${i})" style="cursor:pointer; color:#ccc">✕</span>
-                </div>`;
-            });
-            let risp = tP - tF;
-            let sMedio = tP > 0 ? ((risp / tP) * 100) : 0;
-            document.getElementById('out-p').innerText = tP.toFixed(2).replace('.', ',');
-            document.getElementById('out-f').innerText = tF.toFixed(2).replace('.', ',');
-            document.getElementById('out-r').innerText = risp.toFixed(2).replace('.', ',');
-            document.getElementById('out-sm').innerText = sMedio.toFixed(1);
+            carrello.forEach((item, i) => { tP+=item.p; tF+=item.f; lista.innerHTML += `<div style="display:flex; justify-content:space-between; padding:10px; border-bottom:1px solid #f0edf5; font-size:13px;"><span>${item.n}: €${item.f.toFixed(2)}</span><span onclick="elimina(${i})" style="cursor:pointer; color:#ccc">✕</span></div>`; });
+            let risp = tP - tF; let sMedio = tP > 0 ? ((risp / tP) * 100) : 0;
+            document.getElementById('out-p').innerText = tP.toFixed(2).replace('.', ','); document.getElementById('out-f').innerText = tF.toFixed(2).replace('.', ','); document.getElementById('out-r').innerText = risp.toFixed(2).replace('.', ','); document.getElementById('out-sm').innerText = sMedio.toFixed(1);
         }
-        
         function resetCampi() { document.getElementById('in-pieno').value=''; document.getElementById('in-sconto').value=''; document.getElementById('in-finale').value=''; document.getElementById('in-nome').value=''; buffer=[]; }
         function elimina(i) { carrello.splice(i,1); aggiornaUI(); }
         function svuota() { if(confirm("Svuotare tutto?")) { carrello=[]; aggiornaUI(); } }
-        
         function condividiTesto() { 
-            let testo = "Ecco il mio risparmio su CalcolaSconto.it:\n";
-            carrello.forEach(i => testo += `- ${i.n}: €${i.f.toFixed(2)}\n`);
-            testo += `\nRisparmio totale: €${document.getElementById('out-r').innerText}`;
-            if (navigator.share) { navigator.share({ title: 'Mio Risparmio', text: testo, url: 'https://www.calcolasconto.it' }); }
-            else { alert("Risultati copiati negli appunti!"); }
+            let testo = "Ecco il mio risparmio su CalcolaSconto.it:\n"; carrello.forEach(i => testo += `- ${i.n}: €${i.f.toFixed(2)}\n`); testo += `\nRisparmio totale: €${document.getElementById('out-r').innerText}`;
+            if (navigator.share) { navigator.share({ title: 'Mio Risparmio', text: testo, url: 'https://www.calcolasconto.it' }); } else { alert("Risultati copiati negli appunti!"); }
         }
     </script>
 </body>
