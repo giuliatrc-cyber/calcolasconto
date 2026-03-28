@@ -52,7 +52,6 @@
         .summary-box { background: #fdfcff; padding: 25px; border-radius: 25px; border: 1px solid #f0edf5; margin-top: 10px; }
         .summary-line { display: flex; justify-content: space-between; margin-bottom: 10px; color: var(--text-soft); font-size: 14px; }
 
-        /* Tasto Condividi Integrato */
         .btn-share { background: #f3effa; color: var(--main-purple-sat); border: 1px solid var(--main-purple); width: 100%; height: 45px; border-radius: 15px; font-weight: 800; cursor: pointer; margin: 10px 0; font-size: 13px; display: flex; align-items: center; justify-content: center; gap: 8px; transition: 0.2s; }
         .btn-share:hover { background: var(--main-purple); color: white; }
 
@@ -71,22 +70,30 @@
         .formula-box { background: #f8f6fb; padding: 15px; border-radius: 12px; margin: 12px 0; color: #7a6a94; border-left: 4px solid var(--main-purple); font-size: 13px; line-height: 1.6; }
 
         footer { background: #fff; padding: 50px 20px; text-align: center; border-top: 1px solid #f0edf5; font-size: 13px; color: var(--text-soft); }
-        #cookie-banner { position: fixed; bottom: 25px; left: 25px; right: 25px; background: white; padding: 25px; border-radius: 25px; box-shadow: 0 15px 50px rgba(0,0,0,0.15); border: 2px solid var(--main-purple); z-index: 10000; display: none; max-width: 400px; margin: 0 auto; }
+        
+        /* Stile del Banner Cookie - Bolla Moderna */
+        #cookie-banner { 
+            position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); 
+            width: 90%; max-width: 400px; background: white; border: 2px solid #e0d8f0; 
+            border-radius: 30px; padding: 25px; box-shadow: 0 15px 40px rgba(177, 156, 217, 0.25); 
+            z-index: 10000; text-align: center; display: none; 
+        }
+        
         a { color: #8e7ca8; text-decoration: none; font-weight: 600; cursor: pointer; }
     </style>
 </head>
 <body>
 
-    <div id="cookie-banner" style="position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); width: 90%; max-width: 400px; background: white; border: 2px solid #e0d8f0; border-radius: 30px; padding: 20px; box-shadow: 0 10px 25px rgba(177, 156, 217, 0.2); z-index: 10000; text-align: center; font-family: sans-serif;">
-    <p style="margin: 0 0 15px 0; font-size: 14px; color: #8e7ca8; line-height: 1.4;">
-        <strong>🍪 Privacy & Cookie</strong><br>
-        Usiamo cookie statistici (Analytics) e Senja per migliorare l'esperienza. Accetti?
-    </p>
-    <div style="display: flex; gap: 10px; justify-content: center;">
-        <button onclick="gestioneCookie(false)" style="background: #f0edf5; color: #8e7ca8; border: none; padding: 10px 20px; border-radius: 20px; cursor: pointer; font-size: 13px;">Rifiuta</button>
-        <button onclick="gestioneCookie(true)" style="background: #b19cd9; color: white; border: none; padding: 10px 25px; border-radius: 20px; cursor: pointer; font-weight: bold; font-size: 13px;">Accetta</button>
+    <div id="cookie-banner">
+        <p style="margin: 0 0 15px 0; font-size: 14px; color: #8e7ca8; line-height: 1.4;">
+            <strong>🍪 Privacy & Cookie</strong><br>
+            Usiamo cookie statistici (Analytics) e Senja per migliorare l'esperienza. Accetti?
+        </p>
+        <div style="display: flex; gap: 10px; justify-content: center;">
+            <button onclick="gestioneCookie(false)" style="background: #f0edf5; color: #8e7ca8; border: none; padding: 10px 20px; border-radius: 20px; cursor: pointer; font-size: 13px; font-weight: 600;">Rifiuta</button>
+            <button onclick="gestioneCookie(true)" style="background: #b19cd9; color: white; border: none; padding: 10px 25px; border-radius: 20px; cursor: pointer; font-weight: bold; font-size: 13px;">Accetta</button>
+        </div>
     </div>
-</div>
 
     <header>
         <h1>CalcolaSconto.it</h1>
@@ -155,15 +162,30 @@
 
     <footer>
         <p>&copy; 2026 CalcolaSconto.it | <a href="mailto:info@calcolasconto.it">info@calcolasconto.it</a></p>
-        <p><a onclick="resetCookie()">Privacy Policy</a></p>
+        <p><a onclick="resetCookie()">Gestisci Privacy & Cookie</a></p>
     </footer>
 
     <script>
         let carrello = []; let buffer = [];
-        window.onload = function() { if (localStorage.getItem('cookieScelta') === null) { document.getElementById('cookie-banner').style.display = 'flex'; } };
+        
+        // Gestione apparizione banner
+        window.onload = function() { 
+            if (localStorage.getItem('cookieScelta') === null) { 
+                document.getElementById('cookie-banner').style.display = 'block'; 
+            } 
+        };
+
+        function gestioneCookie(accetta) { 
+            localStorage.setItem('cookieScelta', 'fatto'); 
+            document.getElementById('cookie-banner').style.display = 'none'; 
+        }
+
+        function resetCookie() { 
+            localStorage.removeItem('cookieScelta'); 
+            location.reload(); 
+        }
+
         function addFavorite() { alert("⭐ AGGIUNGI AI PREFERITI:\nPremi CTRL + D (Windows) o CMD + D (Mac). Su Mobile usa 'Aggiungi a Home'"); }
-        function gestioneCookie(accetta) { localStorage.setItem('cookieScelta', 'fatto'); document.getElementById('cookie-banner').style.display = 'none'; }
-        function resetCookie() { localStorage.removeItem('cookieScelta'); location.reload(); }
         function pulisci(val) { return parseFloat(val.toString().replace(',', '.')); }
         
         function motoreUX(t) {
