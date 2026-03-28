@@ -223,7 +223,7 @@
             document.getElementById('out-sm').innerText = sMedio.toFixed(1);
         }
 
-        function condividiLista() {
+       function condividiLista() {
             let testo = "La mia lista sconti su CalcolaSconto.it:\n\n";
             carrello.forEach(i => { testo += `- ${i.n}: €${i.f.toFixed(2)}\n`; });
             testo += `\nTotale Pagato: €${document.getElementById('out-f').innerText}\nRisparmio Reale: €${document.getElementById('out-r').innerText}`;
@@ -234,9 +234,34 @@
             }
         }
 
-        function resetCampi() { document.getElementById('in-pieno').value=''; document.getElementById('in-sconto').value=''; document.getElementById('in-finale').value=''; document.getElementById('in-nome').value=''; buffer=[]; }
+        function resetCampi() { 
+            document.getElementById('in-pieno').value=''; 
+            document.getElementById('in-sconto').value=''; 
+            document.getElementById('in-finale').value=''; 
+            document.getElementById('in-nome').value=''; 
+            buffer=[]; 
+        }
+        
         function elimina(i) { carrello.splice(i,1); aggiornaUI(); }
+        
         function svuota() { if(confirm("Svuotare tutto?")) { carrello=[]; aggiornaUI(); } }
+
+        // --- GESTIONE COOKIE BANNER ---
+        window.addEventListener('load', function() {
+            if (localStorage.getItem('cookieScelta') === null) {
+                document.getElementById('cookie-banner').style.display = 'block';
+            }
+        });
+
+        function gestioneCookie(accetta) {
+            localStorage.setItem('cookieScelta', 'fatto');
+            document.getElementById('cookie-banner').style.display = 'none';
+        }
+
+        function resetCookie() {
+            localStorage.removeItem('cookieScelta');
+            location.reload();
+        }
     </script>
 </body>
 </html>
