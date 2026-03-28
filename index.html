@@ -16,6 +16,26 @@
       gtag('config', 'G-170NYKZPW2');
     </script>
 
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org/",
+      "@type": "SoftwareApplication",
+      "name": "CalcolaSconto.it",
+      "operatingSystem": "All",
+      "applicationCategory": "UtilityApplication",
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "5.0",
+        "reviewCount": "2"
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "EUR"
+      }
+    }
+    </script>
+
     <style>
         :root { --main-purple: #b19cd9; --main-purple-sat: #9d81d1; --text-soft: #a499bc; --bg-light: #faf9ff; }
         body { background: var(--bg-light); margin: 0; font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; display: flex; flex-direction: column; min-height: 100vh; color: #444; line-height: 1.5; }
@@ -55,7 +75,7 @@
         .btn-share { background: #f3effa; color: var(--main-purple-sat); border: 1px solid var(--main-purple); width: 100%; height: 45px; border-radius: 15px; font-weight: 800; cursor: pointer; margin: 10px 0; font-size: 13px; display: flex; align-items: center; justify-content: center; gap: 8px; transition: 0.2s; }
         .btn-share:hover { background: var(--main-purple); color: white; }
 
-        .feedback-area { margin: 40px 0; width: 100%; max-width: 500px; text-align: center; }
+        .feedback-area { margin: 50px 0; width: 100%; max-width: 480px; text-align: center; }
         .btn-stars {
             background: white; border: 2px solid var(--main-purple); color: var(--main-purple-sat); padding: 12px 25px; 
             border-radius: 20px; font-weight: 800; text-decoration: none; display: inline-block; 
@@ -144,10 +164,10 @@
 
         <div class="feedback-area">
             <a href="https://senja.io/p/calcola-sconto/r/P5EDI4" target="_blank" class="btn-stars">
-                Ti piace il sito? Lascia 5 stelle ⭐
+                Lascia anche tu 5 stelle ⭐
             </a>
-            <script src="https://widget.senja.io/widget/9bd76c3c-f1a3-4abd-8c80-e7359d6644dd/platform.js" type="text/javascript" async></script>
-            <div class="senja-embed" data-id="9bd76c3c-f1a3-4abd-8c80-e7359d6644dd" data-mode="shadow" data-lazyload="false"></div>
+            <script src="https://widget.senja.io/widget/4df3739c-f41a-411f-a933-0274300e74f9/platform.js" type="text/javascript" async></script>
+            <div class="senja-embed" data-id="4df3739c-f41a-411f-a933-0274300e74f9" data-mode="shadow" data-lazyload="false"></div>
         </div>
 
         <section class="faq-section">
@@ -167,9 +187,7 @@
     <script>
         let carrello = []; let buffer = [];
         
-        // UNICA FUNZIONE ONLOAD
         window.onload = function() { 
-            // Mostra banner se non c'è scelta salvata
             if (localStorage.getItem('cookieScelta') === null) { 
                 document.getElementById('cookie-banner').style.display = 'block'; 
             } 
