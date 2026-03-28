@@ -5,8 +5,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calcola Sconto Online - Calcolatore Sconto Inverso e Percentuale</title>
     <meta name="description" content="Il calcolatore di sconti più rapido online. Calcola il prezzo finale, lo sconto percentuale o il prezzo di listino originale in un click con formule spiegate.">
-        
+    
     <meta name="google-site-verification" content="INSERISCI_QUI_IL_TUO_CODICE_SEARCH_CONSOLE">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org/",
+      "@type": "SoftwareApplication",
+      "name": "CalcolaSconto.it",
+      "operatingSystem": "All",
+      "applicationCategory": "FinanceApplication",
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "5",
+        "bestRating": "5",
+        "worstRating": "1",
+        "ratingCount": "15", 
+        "reviewCount": "15"
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "EUR"
+      }
+    }
+    </script>
 
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-170NYKZPW2"></script>
     <script>
@@ -14,10 +37,6 @@
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
       gtag('config', 'G-170NYKZPW2');
-        
-      function caricaAnalytics() {
-          console.log("Analytics Attivo");
-      }
     </script>
 
     <style>
@@ -27,26 +46,15 @@
         header h1 { color: #8e7ca8; margin: 0; font-size: 28px; font-weight: 800; letter-spacing: -1px; }
         .ux-desc { max-width: 500px; margin: 15px auto 0; font-size: 14px; color: var(--text-soft); font-style: italic; }
         
-        /* BOTTONE PREFERITI LILLA NELL'HEADER */
+        /* Bottone con Stellina SVG */
         .btn-fav { 
-            background: #f3effa; 
-            border: 1px solid var(--main-purple); 
-            color: #8e7ca8; 
-            padding: 8px 18px; 
-            border-radius: 25px; 
-            font-size: 12px; 
-            font-weight: 700; 
-            cursor: pointer; 
-            display: inline-flex; 
-            align-items: center; 
-            gap: 6px; 
-            margin-top: 15px;
-            transition: 0.3s ease;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            outline: none;
+            background: #f3effa; border: 1px solid var(--main-purple); color: #8e7ca8; padding: 8px 18px; border-radius: 25px; 
+            font-size: 12px; font-weight: 700; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; 
+            margin-top: 15px; transition: 0.3s ease; text-transform: uppercase; letter-spacing: 0.5px; outline: none;
         }
+        .btn-fav svg { fill: var(--main-purple); width: 14px; height: 14px; transition: 0.3s; }
         .btn-fav:hover { background: var(--main-purple); color: white; transform: translateY(-1px); box-shadow: 0 4px 10px rgba(177, 156, 217, 0.2); }
+        .btn-fav:hover svg { fill: white; }
 
         .instruction-tag { font-size: 11px; color: var(--main-purple); font-weight: 800; text-transform: uppercase; margin: 20px auto 10px; letter-spacing: 1px; display: block; text-align: center; }
         .main-content { flex: 1; padding: 10px 20px 30px; display: flex; flex-direction: column; align-items: center; }
@@ -73,12 +81,14 @@
         #cookie-banner { position: fixed; bottom: 25px; left: 25px; right: 25px; background: white; padding: 25px; border-radius: 25px; box-shadow: 0 15px 50px rgba(0,0,0,0.15); border: 2px solid var(--main-purple); z-index: 10000; display: none; flex-direction: column; gap: 15px; max-width: 500px; margin: 0 auto; }
         footer { background: #fff; padding: 50px 20px; text-align: center; border-top: 1px solid #f0edf5; font-size: 13px; color: var(--text-soft); }
         a { color: #8e7ca8; text-decoration: none; font-weight: 600; cursor: pointer; }
+        
+        .reviews-pure-widget { margin: 40px 0; width: 100%; max-width: 650px; }
     </style>
 </head>
 <body>
 
     <div id="cookie-banner">
-        <p><strong>🍪 La tua Privacy</strong><br>Usiamo cookie statistici per migliorare l'esperienza sul sito. Puoi accettare o rifiutare senza limitazioni.</p>
+        <p><strong>🍪 La tua Privacy</strong><br>Usiamo cookie statistici (Google Analytics) e widget di terze parti (Senja) per visualizzare le recensioni. Puoi accettare o rifiutare senza limitazioni.</p>
         <div style="display:flex; gap:10px; justify-content: flex-end;">
             <button onclick="gestioneCookie(false)" style="background:#f0edf5; border:none; padding:10px 20px; border-radius:14px; cursor:pointer">Rifiuta</button>
             <button onclick="gestioneCookie(true)" style="background:var(--main-purple); color:white; border:none; padding:10px 20px; border-radius:14px; cursor:pointer; font-weight:bold">Accetta</button>
@@ -89,7 +99,8 @@
         <h1>CalcolaSconto.it</h1>
         <p class="ux-desc">Lo strumento veloce per sconti, scorpori e liste della spesa.</p>
         <button onclick="addFavorite()" class="btn-fav">
-            ⭐ Salva tra i preferiti
+            <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            Salva tra i preferiti
         </button>
     </header>
 
@@ -127,19 +138,23 @@
             </div>
         </div>
 
+        <div class="reviews-pure-widget">
+            <div class="senja-embed" data-id="KBJN" data-mode="light" data-lazyload="false" style="min-height: 200px;"></div>
+            <script async type="text/javascript" src="https://widget.senja.io/widget/KBJN/platform.js"></script>
+        </div>
+
         <section class="faq-section">
             <h2>Guida e Privacy</h2>
             <details open><summary>1. Calcolo del Prezzo Scontato</summary><div class="formula-box"><strong>Formula:</strong> Prezzo Finale = Listino - (Listino * Sconto / 100)<br><strong>Esempio:</strong> 100€ - 20% = 80€</div></details>
             <details><summary>2. Calcolo dello Sconto Inverso</summary><div class="formula-box"><strong>Formula:</strong> Prezzo Originale = (Pagato * 100) / (100 - % Sconto)<br><strong>Esempio:</strong> Pagato 75€ con sconto 25% -> Costava 100€</div></details>
             <details><summary>3. Calcolo della Percentuale di Sconto</summary><div class="formula-box"><strong>Formula:</strong> % Sconto = [(Listino - Pagato) / Listino] * 100</div></details>
-            <details><summary>4. Calcolo dello Sconto Medio</summary><div class="formula-box"><strong>Formula:</strong> % Media = (Risparmio Totale / Listino Totale) * 100</div></details>
-            <details><summary>5. I miei dati sono al sicuro?</summary><div class="formula-box"><strong>Privacy al 100%:</strong> Tutti i calcoli e i nomi degli articoli inseriti nella lista vengono elaborati esclusivamente dal tuo browser. Non salviamo i tuoi dati su server esterni e non li condividiamo con nessuno. La tua lista della spesa è solo tua.</div></details>
+            <details><summary>4. Privacy e Dati Riservati</summary><div class="formula-box"><strong>Dati al sicuro:</strong> I tuoi calcoli e le liste della spesa che crei non vengono mai salvati sui nostri server né condivisi. Restano esclusivamente nel tuo browser per garantirti il massimo della privacy. Usiamo Analytics e Senja solo per migliorare l'esperienza e mostrare i feedback degli utenti.</div></details>
         </section>
     </div>
 
     <footer>
         <p>&copy; 2026 CalcolaSconto.it | <a href="mailto:info@calcolasconto.it">info@calcolasconto.it</a></p>
-        <p><a onclick="resetCookie()">Gestione Cookie</a></p>
+        <p><a onclick="resetCookie()">Gestione Privacy e Cookie</a></p>
     </footer>
 
     <script>
@@ -148,14 +163,11 @@
         
         function addFavorite() {
             const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-            if (isMobile) {
-                alert("📱 PER AGGIUNGERE ALLA HOME:\n\n1. Tocca l'icona 'Condividi' (quadrato con freccia su iOS o 3 puntini su Android).\n2. Clicca su 'Aggiungi alla schermata Home'.\n\nCosì avrai l'icona del sito come una vera App!");
-            } else {
-                alert("⭐ AGGIUNGI AI PREFERITI:\n\nPremi sulla tastiera:\nCTRL + D (Windows/Linux)\noppure\nCMD + D (Mac)");
-            }
+            if (isMobile) { alert("📱 PER AGGIUNGERE ALLA HOME:\n\n1. Tocca 'Condividi'.\n2. Clicca su 'Aggiungi alla schermata Home'."); }
+            else { alert("⭐ AGGIUNGI AI PREFERITI:\n\nPremi CTRL + D (Windows) o CMD + D (Mac)"); }
         }
 
-        function gestioneCookie(accetta) { localStorage.setItem('cookieScelta', 'fatto'); localStorage.setItem('cookieAccettati', accetta); document.getElementById('cookie-banner').style.display = 'none'; if(accetta) caricaAnalytics(); }
+        function gestioneCookie(accetta) { localStorage.setItem('cookieScelta', 'fatto'); localStorage.setItem('cookieAccettati', accetta); document.getElementById('cookie-banner').style.display = 'none'; }
         function resetCookie() { localStorage.removeItem('cookieScelta'); location.reload(); }
         function pulisci(val) { return parseFloat(val.toString().replace(',', '.')); }
         function motoreUX(t) {
@@ -200,11 +212,8 @@
             let testo = "Ecco il mio risparmio su CalcolaSconto.it:\n";
             carrello.forEach(i => testo += `- ${i.n}: €${i.f.toFixed(2)}\n`);
             testo += `\nRisparmio totale: €${document.getElementById('out-r').innerText}`;
-            if (navigator.share) {
-                navigator.share({ title: 'Mio Risparmio', text: testo, url: 'https://www.calcolasconto.it' });
-            } else {
-                alert("Copiato negli appunti:\n\n" + testo);
-            }
+            if (navigator.share) { navigator.share({ title: 'Mio Risparmio', text: testo, url: 'https://www.calcolasconto.it' }); }
+            else { alert("Risultati copiati negli appunti!"); }
         }
     </script>
 </body>
